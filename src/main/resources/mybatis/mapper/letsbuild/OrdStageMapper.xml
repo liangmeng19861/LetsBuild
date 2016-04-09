@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.letsbuild.dao.mapper.interfaces.OrdStageMapper" >
+  <resultMap id="BaseResultMap" type="com.letsbuild.dao.mapper.bo.OrdStage" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="order_id" property="orderId" jdbcType="BIGINT" />
+    <result column="stage_no" property="stageNo" jdbcType="INTEGER" />
+    <result column="plan_amount" property="planAmount" jdbcType="DOUBLE" />
+    <result column="plan_income_time" property="planIncomeTime" jdbcType="TIMESTAMP" />
+    <result column="invoice_amount" property="invoiceAmount" jdbcType="DOUBLE" />
+    <result column="invoice_time" property="invoiceTime" jdbcType="TIMESTAMP" />
+    <result column="invoice_no" property="invoiceNo" jdbcType="VARCHAR" />
+    <result column="income_amount" property="incomeAmount" jdbcType="DOUBLE" />
+    <result column="income_time" property="incomeTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, order_id, stage_no, plan_amount, plan_income_time, invoice_amount, invoice_time, 
+    invoice_no, income_amount, income_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.letsbuild.dao.mapper.bo.OrdStageCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ord_stage
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart != null and limitStart>=0" >
+      limit #{limitStart} , #{limitEnd}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from ord_stage
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="Long" >
+    delete from ord_stage
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.letsbuild.dao.mapper.bo.OrdStageCriteria" >
+    delete from ord_stage
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.letsbuild.dao.mapper.bo.OrdStage" >
+    insert into ord_stage (id, order_id, stage_no, 
+      plan_amount, plan_income_time, invoice_amount, 
+      invoice_time, invoice_no, income_amount, 
+      income_time)
+    values (#{id,jdbcType=BIGINT}, #{orderId,jdbcType=BIGINT}, #{stageNo,jdbcType=INTEGER}, 
+      #{planAmount,jdbcType=DOUBLE}, #{planIncomeTime,jdbcType=TIMESTAMP}, #{invoiceAmount,jdbcType=DOUBLE}, 
+      #{invoiceTime,jdbcType=TIMESTAMP}, #{invoiceNo,jdbcType=VARCHAR}, #{incomeAmount,jdbcType=DOUBLE}, 
+      #{incomeTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.letsbuild.dao.mapper.bo.OrdStage" >
+    insert into ord_stage
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="stageNo != null" >
+        stage_no,
+      </if>
+      <if test="planAmount != null" >
+        plan_amount,
+      </if>
+      <if test="planIncomeTime != null" >
+        plan_income_time,
+      </if>
+      <if test="invoiceAmount != null" >
+        invoice_amount,
+      </if>
+      <if test="invoiceTime != null" >
+        invoice_time,
+      </if>
+      <if test="invoiceNo != null" >
+        invoice_no,
+      </if>
+      <if test="incomeAmount != null" >
+        income_amount,
+      </if>
+      <if test="incomeTime != null" >
+        income_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="stageNo != null" >
+        #{stageNo,jdbcType=INTEGER},
+      </if>
+      <if test="planAmount != null" >
+        #{planAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="planIncomeTime != null" >
+        #{planIncomeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="invoiceAmount != null" >
+        #{invoiceAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="invoiceTime != null" >
+        #{invoiceTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="invoiceNo != null" >
+        #{invoiceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="incomeAmount != null" >
+        #{incomeAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="incomeTime != null" >
+        #{incomeTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.letsbuild.dao.mapper.bo.OrdStageCriteria" resultType="java.lang.Integer" >
+    select count(*) from ord_stage
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update ord_stage
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.orderId != null" >
+        order_id = #{record.orderId,jdbcType=BIGINT},
+      </if>
+      <if test="record.stageNo != null" >
+        stage_no = #{record.stageNo,jdbcType=INTEGER},
+      </if>
+      <if test="record.planAmount != null" >
+        plan_amount = #{record.planAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="record.planIncomeTime != null" >
+        plan_income_time = #{record.planIncomeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.invoiceAmount != null" >
+        invoice_amount = #{record.invoiceAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="record.invoiceTime != null" >
+        invoice_time = #{record.invoiceTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.invoiceNo != null" >
+        invoice_no = #{record.invoiceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.incomeAmount != null" >
+        income_amount = #{record.incomeAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="record.incomeTime != null" >
+        income_time = #{record.incomeTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update ord_stage
+    set id = #{record.id,jdbcType=BIGINT},
+      order_id = #{record.orderId,jdbcType=BIGINT},
+      stage_no = #{record.stageNo,jdbcType=INTEGER},
+      plan_amount = #{record.planAmount,jdbcType=DOUBLE},
+      plan_income_time = #{record.planIncomeTime,jdbcType=TIMESTAMP},
+      invoice_amount = #{record.invoiceAmount,jdbcType=DOUBLE},
+      invoice_time = #{record.invoiceTime,jdbcType=TIMESTAMP},
+      invoice_no = #{record.invoiceNo,jdbcType=VARCHAR},
+      income_amount = #{record.incomeAmount,jdbcType=DOUBLE},
+      income_time = #{record.incomeTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.letsbuild.dao.mapper.bo.OrdStage" >
+    update ord_stage
+    <set >
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="stageNo != null" >
+        stage_no = #{stageNo,jdbcType=INTEGER},
+      </if>
+      <if test="planAmount != null" >
+        plan_amount = #{planAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="planIncomeTime != null" >
+        plan_income_time = #{planIncomeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="invoiceAmount != null" >
+        invoice_amount = #{invoiceAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="invoiceTime != null" >
+        invoice_time = #{invoiceTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="invoiceNo != null" >
+        invoice_no = #{invoiceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="incomeAmount != null" >
+        income_amount = #{incomeAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="incomeTime != null" >
+        income_time = #{incomeTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.letsbuild.dao.mapper.bo.OrdStage" >
+    update ord_stage
+    set order_id = #{orderId,jdbcType=BIGINT},
+      stage_no = #{stageNo,jdbcType=INTEGER},
+      plan_amount = #{planAmount,jdbcType=DOUBLE},
+      plan_income_time = #{planIncomeTime,jdbcType=TIMESTAMP},
+      invoice_amount = #{invoiceAmount,jdbcType=DOUBLE},
+      invoice_time = #{invoiceTime,jdbcType=TIMESTAMP},
+      invoice_no = #{invoiceNo,jdbcType=VARCHAR},
+      income_amount = #{incomeAmount,jdbcType=DOUBLE},
+      income_time = #{incomeTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
