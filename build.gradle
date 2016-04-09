@@ -61,7 +61,9 @@ eclipse {
 //*/
 
 //热部署
+
 /*
+
 apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin'
 
 gretty {
@@ -71,4 +73,5 @@ gretty {
   onScanFilesChanged{
   	System.out.println("扫描到文件变化，开始热部署");
   }
-}*/
+}
+//*/
