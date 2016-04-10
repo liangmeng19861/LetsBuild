@@ -60,12 +60,15 @@ public class ForegiftBusiSVImpl implements IForegiftBusiSV {
         if (foregift == null) {
             throw new BusinessException(ExceptCodeConstants.NO_DATA, "押金不存在");
         }
+        if(foregift.getPayUser()!=vo.getPayUser()){
+            throw new BusinessException(ExceptCodeConstants.ORDER_STATE, "用户不能操作该押金");
+        }
         if (!DbConstants.OrdForegift.Status.PAY.equals(foregift.getStatus())) {
             throw new BusinessException(ExceptCodeConstants.ORDER_STATE, "押金状态不允许退还");
         }
         // 押金付款属性
         OrdForegift bo = new OrdForegift();
-        Prop[] props = { new Prop("id"), new Prop("cutAmount"), new Prop("unableAmount"),
+        Prop[] props = { new Prop("id"), new Prop("cutAmount"),new Prop("payUser"), new Prop("unableAmount"),
                 new Prop("refundTime") };
         BeanUtil.copySelectProperties(vo, bo, props);
         bo.setStatus(DbConstants.OrdForegift.Status.REFUND);
