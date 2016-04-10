@@ -6,4 +6,5 @@ public class ExceptCodeConstants {
 	public static final String NO_PARAM = "1000";
 	public static final String NO_DATA = "1001";
     public static final String NO_PERMISSION = "1002";
+    public static final String ORDER_STATE = "1003";
 }

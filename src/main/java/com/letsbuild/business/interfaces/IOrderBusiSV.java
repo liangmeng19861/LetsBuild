@@ -39,6 +39,26 @@ public interface IOrderBusiSV {
     public void acceptanceOrder(OrderVo order) throws BusinessException;
 
     /**
+     * 开具发票
+     * 
+     * @throws BusinessException
+     */
+    public void invoiceOrder(OrderVo order) throws BusinessException;
+    
+    /**
+     * 订单回款
+     * @throws BusinessException
+     */
+    public void incomeOrder(OrderVo order) throws BusinessException;
+
+    /**
+     * 修改订单 (修改发票和回款信息)
+     * @param order
+     * @throws BusinessException
+     */
+    public void modifyOrder(OrderVo order) throws BusinessException;
+
+    /**
      * 订单查询：主键查询订单详细(翻译，工期)
      * 
      * @throws BusinessException

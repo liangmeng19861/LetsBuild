@@ -51,49 +51,55 @@ public class OrderBusiSVImpl implements IOrderBusiSV {
 
     @Override
     public void quoteOrder(OrderVo vo) throws BusinessException {
-        OrdOrder bo = new OrdOrder();
+        OrdOrder order = ordOrderSV.queryOrdOrderById(vo.getId());
+        if (order == null) {
+            throw new BusinessException(ExceptCodeConstants.NO_DATA, "订单不存在");
+        }
+        if (order.getProjectLeader() != vo.getProjectLeader()) {
+            throw new BusinessException(ExceptCodeConstants.NO_PERMISSION, "用户不能操作该订单");
+        }
+        if (!DbConstants.OrdOrder.Status.RECEIVE.equals(order.getStatus())) {
+            throw new BusinessException(ExceptCodeConstants.ORDER_STATE, "订单状态不允许报价");
+        }
         // 报价订单属性
+        OrdOrder bo = new OrdOrder();
         Prop[] props = { new Prop("id"), new Prop("quotesAmount"), new Prop("projectLeader"),
                 new Prop("remark", false) };
         BeanUtil.copySelectProperties(vo, bo, props);
         bo.setStatus(DbConstants.OrdOrder.Status.QUOTES);
         bo.setStatusTime(DateUtil.getSysDate());
-        OrdOrder order = ordOrderSV.queryOrdOrderById(vo.getId());
-        if (order == null) {
-            throw new BusinessException(ExceptCodeConstants.NO_DATA, "报价的订单不存在");
-        }
-        if (order.getProjectLeader() != bo.getProjectLeader()) {
-            throw new BusinessException(ExceptCodeConstants.NO_PERMISSION, "不能对该订单报价");
-        }
         ordOrderSV.modOrder(bo);
     }
 
     @Override
     public void submitOrder(OrderVo vo) throws BusinessException {
-        OrdOrder bo = new OrdOrder();
+        OrdOrder order = ordOrderSV.queryOrdOrderById(vo.getId());
+        if (order == null) {
+            throw new BusinessException(ExceptCodeConstants.NO_DATA, "订单不存在");
+        }
+        if (order.getProjectLeader() != vo.getProjectLeader()) {
+            throw new BusinessException(ExceptCodeConstants.NO_PERMISSION, "用户不能操作该订单");
+        }
+        if (!DbConstants.OrdOrder.Status.QUOTES.equals(order.getStatus())) {
+            throw new BusinessException(ExceptCodeConstants.ORDER_STATE, "订单状态不允许下单");
+        }
         // 下单订单属性
+        OrdOrder bo = new OrdOrder();
         Prop[] props = { new Prop("id"), new Prop("submitAmount"), new Prop("projectLeader"),
                 new Prop("remark", false) };
         BeanUtil.copySelectProperties(vo, bo, props);
         bo.setStatus(DbConstants.OrdOrder.Status.SUBMIT);
         bo.setStatusTime(DateUtil.getSysDate());
         bo.setSubmitTime(DateUtil.getSysDate());
-
-        OrdOrder order = ordOrderSV.queryOrdOrderById(vo.getId());
-        if (order == null) {
-            throw new BusinessException(ExceptCodeConstants.NO_DATA, "下单制作的订单不存在");
-        }
-        if (order.getProjectLeader() != bo.getProjectLeader()) {
-            throw new BusinessException(ExceptCodeConstants.NO_PERMISSION, "不能对该订单下单制作");
-        }
         ordOrderSV.modOrder(bo);
         // 下单工期属性
-        props = new Prop[] { new Prop("orderId"), new Prop("stageNo"), new Prop("planAmount"),
+        props = new Prop[] { new Prop("stageNo"), new Prop("planAmount"),
                 new Prop("planIncomeTime") };
         for (StageVo stageVo : vo.getStages()) {
             OrdStage stageBo = new OrdStage();
             BeanUtil.copySelectProperties(stageVo, stageBo, props);
             stageBo.setId(1l);// FIXME 主键
+            stageBo.setOrderId(vo.getId());
             ordStageSV.addOrdStage(stageBo);
         }
 
@@ -101,22 +107,105 @@ public class OrderBusiSVImpl implements IOrderBusiSV {
 
     @Override
     public void acceptanceOrder(OrderVo vo) throws BusinessException {
-        OrdOrder bo = new OrdOrder();
+        OrdOrder order = ordOrderSV.queryOrdOrderById(vo.getId());
+        if (order == null) {
+            throw new BusinessException(ExceptCodeConstants.NO_DATA, "订单不存在");
+        }
+        if (order.getProjectLeader() != vo.getProjectLeader()) {
+            throw new BusinessException(ExceptCodeConstants.NO_PERMISSION, "用户不能操作该订单");
+        }
+        if (!DbConstants.OrdOrder.Status.SUBMIT.equals(order.getStatus())) {
+            throw new BusinessException(ExceptCodeConstants.ORDER_STATE, "订单状态不允许验收");
+        }
         // 验收订单属性
+        OrdOrder bo = new OrdOrder();
         Prop[] props = { new Prop("id"), new Prop("completeAmount"), new Prop("projectLeader"),
                 new Prop("installTime"), new Prop("remark", false) };
         BeanUtil.copySelectProperties(vo, bo, props);
         bo.setStatus(DbConstants.OrdOrder.Status.ACCEPTANCE);
         bo.setStatusTime(DateUtil.getSysDate());
 
+        ordOrderSV.modOrder(bo);
+    }
+
+    @Override
+    public void invoiceOrder(OrderVo vo) throws BusinessException {
         OrdOrder order = ordOrderSV.queryOrdOrderById(vo.getId());
         if (order == null) {
-            throw new BusinessException(ExceptCodeConstants.NO_DATA, "验收的订单不存在");
+            throw new BusinessException(ExceptCodeConstants.NO_DATA, "订单不存在");
         }
-        if (order.getProjectLeader() != bo.getProjectLeader()) {
-            throw new BusinessException(ExceptCodeConstants.NO_PERMISSION, "不能对该订单验收");
+        if (!DbConstants.OrdOrder.Status.ACCEPTANCE.equals(order.getStatus())) {
+            throw new BusinessException(ExceptCodeConstants.ORDER_STATE, "订单状态不允许开具发票");
         }
+        // 订单属性
+        OrdOrder bo = new OrdOrder();
+        Prop[] props = { new Prop("id"), new Prop("remark", false) };
+        BeanUtil.copySelectProperties(vo, bo, props);
+        bo.setStatus(DbConstants.OrdOrder.Status.INVOICE);
+        bo.setStatusTime(DateUtil.getSysDate());
         ordOrderSV.modOrder(bo);
+
+        // 工期开票属性
+        props = new Prop[] { new Prop("id"), new Prop("invoiceAmount"), new Prop("invoiceTime"),
+                new Prop("invoiceNo") };
+        for (StageVo stageVo : vo.getStages()) {
+            OrdStage stageBo = new OrdStage();
+            BeanUtil.copySelectProperties(stageVo, stageBo, props);
+            ordStageSV.modOrdStage(stageBo);
+        }
+    }
+
+    @Override
+    public void incomeOrder(OrderVo vo) throws BusinessException {
+        OrdOrder order = ordOrderSV.queryOrdOrderById(vo.getId());
+        if (order == null) {
+            throw new BusinessException(ExceptCodeConstants.NO_DATA, "订单不存在");
+        }
+        if (!DbConstants.OrdOrder.Status.INVOICE.equals(order.getStatus())) {
+            throw new BusinessException(ExceptCodeConstants.ORDER_STATE, "订单状态不允许回款");
+        }
+        // 订单属性
+        OrdOrder bo = new OrdOrder();
+        Prop[] props = { new Prop("id"), new Prop("contractNo"), new Prop("remark", false) };
+        BeanUtil.copySelectProperties(vo, bo, props);
+        bo.setStatus(DbConstants.OrdOrder.Status.INCOME);
+        bo.setStatusTime(DateUtil.getSysDate());
+        ordOrderSV.modOrder(bo);
+
+        // 工期回款属性
+        props = new Prop[] { new Prop("id"), new Prop("incomeAmount"), new Prop("incomeTime") };
+        for (StageVo stageVo : vo.getStages()) {
+            OrdStage stageBo = new OrdStage();
+            BeanUtil.copySelectProperties(stageVo, stageBo, props);
+            ordStageSV.modOrdStage(stageBo);
+        }
+    }
+
+    @Override
+    public void modifyOrder(OrderVo vo) throws BusinessException {
+        OrdOrder order = ordOrderSV.queryOrdOrderById(vo.getId());
+        if (order == null) {
+            throw new BusinessException(ExceptCodeConstants.NO_DATA, "订单不存在");
+        }
+        if (!DbConstants.OrdOrder.Status.INCOME.equals(order.getStatus())) {
+            throw new BusinessException(ExceptCodeConstants.ORDER_STATE, "订单状态不允许修改");
+        }
+        // 订单属性
+        OrdOrder bo = new OrdOrder();
+        Prop[] props = { new Prop("id"), new Prop("contractNo"), new Prop("remark", false) };
+        BeanUtil.copySelectProperties(vo, bo, props);
+        // bo.setStatus(DbConstants.OrdOrder.Status.INVOICE); 修改订单不修改状态
+        bo.setStatusTime(DateUtil.getSysDate());
+        ordOrderSV.modOrder(bo);
+
+        // 工期属性
+        props = new Prop[] { new Prop("id"), new Prop("invoiceAmount"), new Prop("invoiceTime"),
+                new Prop("invoiceNo"), new Prop("incomeAmount"), new Prop("incomeTime") };
+        for (StageVo stageVo : vo.getStages()) {
+            OrdStage stageBo = new OrdStage();
+            BeanUtil.copySelectProperties(stageVo, stageBo, props);
+            ordStageSV.modOrdStage(stageBo);
+        }
     }
 
     @Override
@@ -163,7 +252,7 @@ public class OrderBusiSVImpl implements IOrderBusiSV {
         for (OrdOrder o : orderList) {
             OrderVo vo = new OrderVo();
             BeanUtil.copyProperties(o, vo);
-            //FIXME 翻译订单属性
+            // FIXME 翻译订单属性
             voList.add(vo);
         }
         return voList;
