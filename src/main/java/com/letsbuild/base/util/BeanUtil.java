@@ -23,7 +23,11 @@ public class BeanUtil extends BeanUtils {
 		Class<?> actualEditable = target.getClass();
 
 		for(Prop prop:properties){
-			Method writeMethod = getPropertyDescriptor(actualEditable,prop.name).getWriteMethod();
+		    PropertyDescriptor targetPd = getPropertyDescriptor(actualEditable,prop.name);
+		    if(targetPd==null){
+		        throw new BusinessException(ExceptCodeConstants.SYSTEM_ERROR,"对象属性["+prop.name+"]不存在");
+		    }
+			Method writeMethod = targetPd.getWriteMethod();
 			if (writeMethod != null && prop != null) {
 				PropertyDescriptor sourcePd = getPropertyDescriptor(source.getClass(), prop.name);
 				if (sourcePd != null) {
