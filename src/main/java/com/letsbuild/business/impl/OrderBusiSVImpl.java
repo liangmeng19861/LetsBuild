@@ -45,7 +45,7 @@ public class OrderBusiSVImpl implements IOrderBusiSV {
         bo.setId(1l);// FIXME 序列怎么弄
         bo.setReceiveTime(DateUtil.getSysDate());
         bo.setStatus(DbConstants.OrdOrder.Status.RECEIVE);
-        bo.setSubmitTime(DateUtil.getSysDate());
+        bo.setStatusTime(DateUtil.getSysDate());
         ordOrderSV.addOrder(bo);
     }
 
@@ -108,7 +108,6 @@ public class OrderBusiSVImpl implements IOrderBusiSV {
         BeanUtil.copySelectProperties(vo, bo, props);
         bo.setStatus(DbConstants.OrdOrder.Status.ACCEPTANCE);
         bo.setStatusTime(DateUtil.getSysDate());
-        bo.setSubmitTime(DateUtil.getSysDate());
 
         OrdOrder order = ordOrderSV.queryOrdOrderById(vo.getId());
         if (order == null) {
