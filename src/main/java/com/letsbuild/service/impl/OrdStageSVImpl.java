@@ -20,7 +20,7 @@ public class OrdStageSVImpl implements IOrdStageSV {
 			throw new BusinessException(ExceptCodeConstants.SYSTEM_ERROR,
 					"添加工期失败,主键为空");
 		}
-		MapperFactory.getOrdStageMapper().insert(ordStage);
+		MapperFactory.getOrdStageMapper().insertSelective(ordStage);
 	}
 
 	@Override
