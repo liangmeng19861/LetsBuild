@@ -5,7 +5,23 @@ import java.sql.Timestamp;
 public class OrdForegift {
     private Long id;
 
-    private Long orderId;
+    private String projectCode;
+
+    private Long projectLeader;
+
+    private String provinceCode;
+
+    private String cityCode;
+
+    private String brandCode;
+
+    private String merchant;
+
+    private String address;
+
+    private String contactName;
+
+    private String contactTel;
 
     private Double amount;
 
@@ -37,12 +53,76 @@ public class OrdForegift {
         this.id = id;
     }
 
-    public Long getOrderId() {
-        return orderId;
+    public String getProjectCode() {
+        return projectCode;
     }
 
-    public void setOrderId(Long orderId) {
-        this.orderId = orderId;
+    public void setProjectCode(String projectCode) {
+        this.projectCode = projectCode == null ? null : projectCode.trim();
+    }
+
+    public Long getProjectLeader() {
+        return projectLeader;
+    }
+
+    public void setProjectLeader(Long projectLeader) {
+        this.projectLeader = projectLeader;
+    }
+
+    public String getProvinceCode() {
+        return provinceCode;
+    }
+
+    public void setProvinceCode(String provinceCode) {
+        this.provinceCode = provinceCode == null ? null : provinceCode.trim();
+    }
+
+    public String getCityCode() {
+        return cityCode;
+    }
+
+    public void setCityCode(String cityCode) {
+        this.cityCode = cityCode == null ? null : cityCode.trim();
+    }
+
+    public String getBrandCode() {
+        return brandCode;
+    }
+
+    public void setBrandCode(String brandCode) {
+        this.brandCode = brandCode == null ? null : brandCode.trim();
+    }
+
+    public String getMerchant() {
+        return merchant;
+    }
+
+    public void setMerchant(String merchant) {
+        this.merchant = merchant == null ? null : merchant.trim();
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address == null ? null : address.trim();
+    }
+
+    public String getContactName() {
+        return contactName;
+    }
+
+    public void setContactName(String contactName) {
+        this.contactName = contactName == null ? null : contactName.trim();
+    }
+
+    public String getContactTel() {
+        return contactTel;
+    }
+
+    public void setContactTel(String contactTel) {
+        this.contactTel = contactTel == null ? null : contactTel.trim();
     }
 
     public Double getAmount() {
