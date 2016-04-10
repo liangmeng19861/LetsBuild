@@ -865,63 +865,63 @@ public class OrdForegiftCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andPlanReturnTimeIsNull() {
-            addCriterion("plan_return_time is null");
+        public Criteria andPlanRefundTimeIsNull() {
+            addCriterion("plan_refund_time is null");
             return (Criteria) this;
         }
 
-        public Criteria andPlanReturnTimeIsNotNull() {
-            addCriterion("plan_return_time is not null");
+        public Criteria andPlanRefundTimeIsNotNull() {
+            addCriterion("plan_refund_time is not null");
             return (Criteria) this;
         }
 
-        public Criteria andPlanReturnTimeEqualTo(Timestamp value) {
-            addCriterion("plan_return_time =", value, "planReturnTime");
+        public Criteria andPlanRefundTimeEqualTo(Timestamp value) {
+            addCriterion("plan_refund_time =", value, "planRefundTime");
             return (Criteria) this;
         }
 
-        public Criteria andPlanReturnTimeNotEqualTo(Timestamp value) {
-            addCriterion("plan_return_time <>", value, "planReturnTime");
+        public Criteria andPlanRefundTimeNotEqualTo(Timestamp value) {
+            addCriterion("plan_refund_time <>", value, "planRefundTime");
             return (Criteria) this;
         }
 
-        public Criteria andPlanReturnTimeGreaterThan(Timestamp value) {
-            addCriterion("plan_return_time >", value, "planReturnTime");
+        public Criteria andPlanRefundTimeGreaterThan(Timestamp value) {
+            addCriterion("plan_refund_time >", value, "planRefundTime");
             return (Criteria) this;
         }
 
-        public Criteria andPlanReturnTimeGreaterThanOrEqualTo(Timestamp value) {
-            addCriterion("plan_return_time >=", value, "planReturnTime");
+        public Criteria andPlanRefundTimeGreaterThanOrEqualTo(Timestamp value) {
+            addCriterion("plan_refund_time >=", value, "planRefundTime");
             return (Criteria) this;
         }
 
-        public Criteria andPlanReturnTimeLessThan(Timestamp value) {
-            addCriterion("plan_return_time <", value, "planReturnTime");
+        public Criteria andPlanRefundTimeLessThan(Timestamp value) {
+            addCriterion("plan_refund_time <", value, "planRefundTime");
             return (Criteria) this;
         }
 
-        public Criteria andPlanReturnTimeLessThanOrEqualTo(Timestamp value) {
-            addCriterion("plan_return_time <=", value, "planReturnTime");
+        public Criteria andPlanRefundTimeLessThanOrEqualTo(Timestamp value) {
+            addCriterion("plan_refund_time <=", value, "planRefundTime");
             return (Criteria) this;
         }
 
-        public Criteria andPlanReturnTimeIn(List<Timestamp> values) {
-            addCriterion("plan_return_time in", values, "planReturnTime");
+        public Criteria andPlanRefundTimeIn(List<Timestamp> values) {
+            addCriterion("plan_refund_time in", values, "planRefundTime");
             return (Criteria) this;
         }
 
-        public Criteria andPlanReturnTimeNotIn(List<Timestamp> values) {
-            addCriterion("plan_return_time not in", values, "planReturnTime");
+        public Criteria andPlanRefundTimeNotIn(List<Timestamp> values) {
+            addCriterion("plan_refund_time not in", values, "planRefundTime");
             return (Criteria) this;
         }
 
-        public Criteria andPlanReturnTimeBetween(Timestamp value1, Timestamp value2) {
-            addCriterion("plan_return_time between", value1, value2, "planReturnTime");
+        public Criteria andPlanRefundTimeBetween(Timestamp value1, Timestamp value2) {
+            addCriterion("plan_refund_time between", value1, value2, "planRefundTime");
             return (Criteria) this;
         }
 
-        public Criteria andPlanReturnTimeNotBetween(Timestamp value1, Timestamp value2) {
-            addCriterion("plan_return_time not between", value1, value2, "planReturnTime");
+        public Criteria andPlanRefundTimeNotBetween(Timestamp value1, Timestamp value2) {
+            addCriterion("plan_refund_time not between", value1, value2, "planRefundTime");
             return (Criteria) this;
         }
 
@@ -1365,63 +1365,63 @@ public class OrdForegiftCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andBackTimeIsNull() {
-            addCriterion("back_time is null");
+        public Criteria andRefundTimeIsNull() {
+            addCriterion("refund_time is null");
             return (Criteria) this;
         }
 
-        public Criteria andBackTimeIsNotNull() {
-            addCriterion("back_time is not null");
+        public Criteria andRefundTimeIsNotNull() {
+            addCriterion("refund_time is not null");
             return (Criteria) this;
         }
 
-        public Criteria andBackTimeEqualTo(Timestamp value) {
-            addCriterion("back_time =", value, "backTime");
+        public Criteria andRefundTimeEqualTo(Timestamp value) {
+            addCriterion("refund_time =", value, "refundTime");
             return (Criteria) this;
         }
 
-        public Criteria andBackTimeNotEqualTo(Timestamp value) {
-            addCriterion("back_time <>", value, "backTime");
+        public Criteria andRefundTimeNotEqualTo(Timestamp value) {
+            addCriterion("refund_time <>", value, "refundTime");
             return (Criteria) this;
         }
 
-        public Criteria andBackTimeGreaterThan(Timestamp value) {
-            addCriterion("back_time >", value, "backTime");
+        public Criteria andRefundTimeGreaterThan(Timestamp value) {
+            addCriterion("refund_time >", value, "refundTime");
             return (Criteria) this;
         }
 
-        public Criteria andBackTimeGreaterThanOrEqualTo(Timestamp value) {
-            addCriterion("back_time >=", value, "backTime");
+        public Criteria andRefundTimeGreaterThanOrEqualTo(Timestamp value) {
+            addCriterion("refund_time >=", value, "refundTime");
             return (Criteria) this;
         }
 
-        public Criteria andBackTimeLessThan(Timestamp value) {
-            addCriterion("back_time <", value, "backTime");
+        public Criteria andRefundTimeLessThan(Timestamp value) {
+            addCriterion("refund_time <", value, "refundTime");
             return (Criteria) this;
         }
 
-        public Criteria andBackTimeLessThanOrEqualTo(Timestamp value) {
-            addCriterion("back_time <=", value, "backTime");
+        public Criteria andRefundTimeLessThanOrEqualTo(Timestamp value) {
+            addCriterion("refund_time <=", value, "refundTime");
             return (Criteria) this;
         }
 
-        public Criteria andBackTimeIn(List<Timestamp> values) {
-            addCriterion("back_time in", values, "backTime");
+        public Criteria andRefundTimeIn(List<Timestamp> values) {
+            addCriterion("refund_time in", values, "refundTime");
             return (Criteria) this;
         }
 
-        public Criteria andBackTimeNotIn(List<Timestamp> values) {
-            addCriterion("back_time not in", values, "backTime");
+        public Criteria andRefundTimeNotIn(List<Timestamp> values) {
+            addCriterion("refund_time not in", values, "refundTime");
             return (Criteria) this;
         }
 
-        public Criteria andBackTimeBetween(Timestamp value1, Timestamp value2) {
-            addCriterion("back_time between", value1, value2, "backTime");
+        public Criteria andRefundTimeBetween(Timestamp value1, Timestamp value2) {
+            addCriterion("refund_time between", value1, value2, "refundTime");
             return (Criteria) this;
         }
 
-        public Criteria andBackTimeNotBetween(Timestamp value1, Timestamp value2) {
-            addCriterion("back_time not between", value1, value2, "backTime");
+        public Criteria andRefundTimeNotBetween(Timestamp value1, Timestamp value2) {
+            addCriterion("refund_time not between", value1, value2, "refundTime");
             return (Criteria) this;
         }
 
@@ -1492,6 +1492,66 @@ public class OrdForegiftCriteria {
 
         public Criteria andStatusNotBetween(String value1, String value2) {
             addCriterion("status not between", value1, value2, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusTimeIsNull() {
+            addCriterion("status_time is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusTimeIsNotNull() {
+            addCriterion("status_time is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusTimeEqualTo(Timestamp value) {
+            addCriterion("status_time =", value, "statusTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusTimeNotEqualTo(Timestamp value) {
+            addCriterion("status_time <>", value, "statusTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusTimeGreaterThan(Timestamp value) {
+            addCriterion("status_time >", value, "statusTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusTimeGreaterThanOrEqualTo(Timestamp value) {
+            addCriterion("status_time >=", value, "statusTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusTimeLessThan(Timestamp value) {
+            addCriterion("status_time <", value, "statusTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusTimeLessThanOrEqualTo(Timestamp value) {
+            addCriterion("status_time <=", value, "statusTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusTimeIn(List<Timestamp> values) {
+            addCriterion("status_time in", values, "statusTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusTimeNotIn(List<Timestamp> values) {
+            addCriterion("status_time not in", values, "statusTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusTimeBetween(Timestamp value1, Timestamp value2) {
+            addCriterion("status_time between", value1, value2, "statusTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusTimeNotBetween(Timestamp value1, Timestamp value2) {
+            addCriterion("status_time not between", value1, value2, "statusTime");
             return (Criteria) this;
         }
     }

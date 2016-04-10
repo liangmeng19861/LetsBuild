@@ -25,7 +25,7 @@ public class OrdForegift {
 
     private Double amount;
 
-    private Timestamp planReturnTime;
+    private Timestamp planRefundTime;
 
     private Timestamp createTime;
 
@@ -41,9 +41,11 @@ public class OrdForegift {
 
     private Double unableAmount;
 
-    private Timestamp backTime;
+    private Timestamp refundTime;
 
     private String status;
+
+    private Timestamp statusTime;
 
     public Long getId() {
         return id;
@@ -133,12 +135,12 @@ public class OrdForegift {
         this.amount = amount;
     }
 
-    public Timestamp getPlanReturnTime() {
-        return planReturnTime;
+    public Timestamp getPlanRefundTime() {
+        return planRefundTime;
     }
 
-    public void setPlanReturnTime(Timestamp planReturnTime) {
-        this.planReturnTime = planReturnTime;
+    public void setPlanRefundTime(Timestamp planRefundTime) {
+        this.planRefundTime = planRefundTime;
     }
 
     public Timestamp getCreateTime() {
@@ -197,12 +199,12 @@ public class OrdForegift {
         this.unableAmount = unableAmount;
     }
 
-    public Timestamp getBackTime() {
-        return backTime;
+    public Timestamp getRefundTime() {
+        return refundTime;
     }
 
-    public void setBackTime(Timestamp backTime) {
-        this.backTime = backTime;
+    public void setRefundTime(Timestamp refundTime) {
+        this.refundTime = refundTime;
     }
 
     public String getStatus() {
@@ -211,5 +213,13 @@ public class OrdForegift {
 
     public void setStatus(String status) {
         this.status = status == null ? null : status.trim();
+    }
+
+    public Timestamp getStatusTime() {
+        return statusTime;
+    }
+
+    public void setStatusTime(Timestamp statusTime) {
+        this.statusTime = statusTime;
     }
 }

@@ -41,4 +41,29 @@ public final class DbConstants {
 
         }
     }
+
+    /**
+     * 押金表
+     */
+    public final static class OrdForegift {
+        /**
+         * 状态
+         */
+        public final static class Status {
+            /**
+             * 申请
+             */
+            public final static String APPLY = "1";
+
+            /**
+             * 付款
+             */
+            public final static String PAY = "2";
+
+            /**
+             * 退回
+             */
+            public final static String REFUND = "3";
+        }
+    }
 }
