@@ -1,4 +1,4 @@
-package com.letsbuild;
+package com.letsbuild.util;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -49,7 +49,8 @@ public class MybaitsGeneratorTest extends TestCase {
 	public void testMybaitsGenerator() {
 
 		/**生成代码表名**/
-		String[] tableNames = { "ord_advpay","ord_foregift","ord_order","ord_stage","sys_label","sys_menu","sys_role","sys_role_menu","sys_user","sys_user_role" };
+	    String[] tableNames = {"ord_order"};
+		//String[] tableNames = { "ord_advpay","ord_foregift","ord_order","ord_stage","sys_label","sys_menu","sys_role","sys_role_menu","sys_user","sys_user_role" };
 
 		
 		

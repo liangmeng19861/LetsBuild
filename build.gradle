@@ -45,7 +45,9 @@ dependencies{
     	files('lib/mybatis-generator-plugin-1.0-SNAPSHOT.jar'),
     	//单元测试
     	'junit:junit:4.12',
-    	"org.springframework:spring-test:4.1.7.RELEASE"
+    	"org.springframework:spring-test:4.1.7.RELEASE",
+    	//Web访问测试
+    	"commons-httpclient:commons-httpclient:2.0.2"
     )
 }
 //*   

@@ -1,4 +1,4 @@
-package com.letsbuild;
+package com.letsbuild.service;
 
 import junit.framework.TestCase;
 
@@ -9,7 +9,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.letsbuild.business.interfaces.IOrderBusiSV;
-import com.letsbuild.dao.mapper.bo.OrdOrder;
+import com.letsbuild.vo.OrderVo;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({ "/application.xml" })
@@ -23,7 +23,7 @@ public class OrderTest extends TestCase {
 	 */
 	@Test
 	public void testReceive() {
-		OrdOrder order = new OrdOrder();
+		OrderVo order = new OrderVo();
 		order.setProjectCode("ODR_100");
 		order.setProjectLeader(1203l);
 		order.setProvinceCode("22");
@@ -42,7 +42,7 @@ public class OrderTest extends TestCase {
 	 */
 	@Test
 	public void testQuote(){
-		OrdOrder order = new OrdOrder();
+	    OrderVo order = new OrderVo();
 		order.setId(1l);
 		order.setQuotesAmount(1000d);
 		orderBusiSV.quoteOrder(order);
