@@ -1,6 +1,8 @@
 package com.letsbuild.business.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.letsbuild.base.exception.BusinessException;
 import com.letsbuild.base.util.BeanUtil;
@@ -10,10 +12,11 @@ import com.letsbuild.business.interfaces.IForegiftBusiSV;
 import com.letsbuild.constants.DbConstants;
 import com.letsbuild.constants.ExceptCodeConstants;
 import com.letsbuild.dao.mapper.bo.OrdForegift;
-import com.letsbuild.dao.mapper.bo.OrdOrder;
 import com.letsbuild.service.interfaces.IForegiftSV;
 import com.letsbuild.vo.ForegiftVo;
 
+@Service
+@Transactional
 public class ForegiftBusiSVImpl implements IForegiftBusiSV {
 
     @Autowired
@@ -60,7 +63,7 @@ public class ForegiftBusiSVImpl implements IForegiftBusiSV {
         if (foregift == null) {
             throw new BusinessException(ExceptCodeConstants.NO_DATA, "押金不存在");
         }
-        if(foregift.getPayUser()!=vo.getPayUser()){
+        if (foregift.getPayUser() != vo.getPayUser()) {
             throw new BusinessException(ExceptCodeConstants.ORDER_STATE, "用户不能操作该押金");
         }
         if (!DbConstants.OrdForegift.Status.PAY.equals(foregift.getStatus())) {
@@ -68,8 +71,8 @@ public class ForegiftBusiSVImpl implements IForegiftBusiSV {
         }
         // 押金付款属性
         OrdForegift bo = new OrdForegift();
-        Prop[] props = { new Prop("id"), new Prop("cutAmount"),new Prop("payUser"), new Prop("unableAmount"),
-                new Prop("refundTime") };
+        Prop[] props = { new Prop("id"), new Prop("payUser"), new Prop("cutAmount"),
+                new Prop("unableAmount"), new Prop("refundTime") };
         BeanUtil.copySelectProperties(vo, bo, props);
         bo.setStatus(DbConstants.OrdForegift.Status.REFUND);
         bo.setStatusTime(DateUtil.getSysDate());

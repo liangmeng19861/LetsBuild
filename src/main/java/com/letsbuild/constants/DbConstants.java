@@ -66,4 +66,29 @@ public final class DbConstants {
             public final static String REFUND = "3";
         }
     }
+
+    /**
+     * 垫付表
+     */
+    public final static class OrdAdvpay {
+        /**
+         * 状态
+         */
+        public final static class Status {
+            /**
+             * 申请
+             */
+            public final static String APPLY = "1";
+
+            /**
+             * 付款
+             */
+            public final static String PAY = "2";
+
+            /**
+             * 退回
+             */
+            public final static String REFUND = "3";
+        }
+    }
 }

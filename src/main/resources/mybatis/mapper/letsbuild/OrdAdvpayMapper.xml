@@ -10,19 +10,24 @@
     <result column="brand_code" property="brandCode" jdbcType="VARCHAR" />
     <result column="merchant" property="merchant" jdbcType="VARCHAR" />
     <result column="address" property="address" jdbcType="VARCHAR" />
-    <result column="contact_name2" property="contactName2" jdbcType="VARCHAR" />
-    <result column="contact_tel2" property="contactTel2" jdbcType="VARCHAR" />
     <result column="amount" property="amount" jdbcType="DOUBLE" />
     <result column="account_no" property="accountNo" jdbcType="VARCHAR" />
     <result column="account_name" property="accountName" jdbcType="VARCHAR" />
     <result column="open_bank" property="openBank" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="contact_name" property="contactName" jdbcType="VARCHAR" />
     <result column="contact_tel" property="contactTel" jdbcType="VARCHAR" />
-    <result column="plan_return_time" property="planReturnTime" jdbcType="TIMESTAMP" />
+    <result column="plan_refund_time" property="planRefundTime" jdbcType="TIMESTAMP" />
+    <result column="refund_amount" property="refundAmount" jdbcType="DOUBLE" />
+    <result column="refund_time" property="refundTime" jdbcType="TIMESTAMP" />
+    <result column="quotes_amount" property="quotesAmount" jdbcType="DOUBLE" />
     <result column="pay_time" property="payTime" jdbcType="TIMESTAMP" />
     <result column="pay_user" property="payUser" jdbcType="BIGINT" />
     <result column="pay_amount" property="payAmount" jdbcType="DOUBLE" />
     <result column="status" property="status" jdbcType="CHAR" />
+    <result column="status_time" property="statusTime" jdbcType="TIMESTAMP" />
+    <result column="invoice_no" property="invoiceNo" jdbcType="VARCHAR" />
+    <result column="invoice_amount" property="invoiceAmount" jdbcType="DOUBLE" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -84,8 +89,9 @@
   </sql>
   <sql id="Base_Column_List" >
     id, project_code, project_leader, province_code, city_code, brand_code, merchant, 
-    address, contact_name2, contact_tel2, amount, account_no, account_name, open_bank, 
-    contact_name, contact_tel, plan_return_time, pay_time, pay_user, pay_amount, status
+    address, amount, account_no, account_name, open_bank, create_time, contact_name, 
+    contact_tel, plan_refund_time, refund_amount, refund_time, quotes_amount, pay_time, 
+    pay_user, pay_amount, status, status_time, invoice_no, invoice_amount
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.letsbuild.dao.mapper.bo.OrdAdvpayCriteria" >
     select
@@ -123,20 +129,22 @@
   <insert id="insert" parameterType="com.letsbuild.dao.mapper.bo.OrdAdvpay" >
     insert into ord_advpay (id, project_code, project_leader, 
       province_code, city_code, brand_code, 
-      merchant, address, contact_name2, 
-      contact_tel2, amount, account_no, 
-      account_name, open_bank, contact_name, 
-      contact_tel, plan_return_time, pay_time, 
-      pay_user, pay_amount, status
-      )
+      merchant, address, amount, 
+      account_no, account_name, open_bank, 
+      create_time, contact_name, contact_tel, 
+      plan_refund_time, refund_amount, refund_time, 
+      quotes_amount, pay_time, pay_user, 
+      pay_amount, status, status_time, 
+      invoice_no, invoice_amount)
     values (#{id,jdbcType=BIGINT}, #{projectCode,jdbcType=VARCHAR}, #{projectLeader,jdbcType=BIGINT}, 
       #{provinceCode,jdbcType=VARCHAR}, #{cityCode,jdbcType=VARCHAR}, #{brandCode,jdbcType=VARCHAR}, 
-      #{merchant,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{contactName2,jdbcType=VARCHAR}, 
-      #{contactTel2,jdbcType=VARCHAR}, #{amount,jdbcType=DOUBLE}, #{accountNo,jdbcType=VARCHAR}, 
-      #{accountName,jdbcType=VARCHAR}, #{openBank,jdbcType=VARCHAR}, #{contactName,jdbcType=VARCHAR}, 
-      #{contactTel,jdbcType=VARCHAR}, #{planReturnTime,jdbcType=TIMESTAMP}, #{payTime,jdbcType=TIMESTAMP}, 
-      #{payUser,jdbcType=BIGINT}, #{payAmount,jdbcType=DOUBLE}, #{status,jdbcType=CHAR}
-      )
+      #{merchant,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{amount,jdbcType=DOUBLE}, 
+      #{accountNo,jdbcType=VARCHAR}, #{accountName,jdbcType=VARCHAR}, #{openBank,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{contactName,jdbcType=VARCHAR}, #{contactTel,jdbcType=VARCHAR}, 
+      #{planRefundTime,jdbcType=TIMESTAMP}, #{refundAmount,jdbcType=DOUBLE}, #{refundTime,jdbcType=TIMESTAMP}, 
+      #{quotesAmount,jdbcType=DOUBLE}, #{payTime,jdbcType=TIMESTAMP}, #{payUser,jdbcType=BIGINT}, 
+      #{payAmount,jdbcType=DOUBLE}, #{status,jdbcType=CHAR}, #{statusTime,jdbcType=TIMESTAMP}, 
+      #{invoiceNo,jdbcType=VARCHAR}, #{invoiceAmount,jdbcType=DOUBLE})
   </insert>
   <insert id="insertSelective" parameterType="com.letsbuild.dao.mapper.bo.OrdAdvpay" >
     insert into ord_advpay
@@ -165,12 +173,6 @@
       <if test="address != null" >
         address,
       </if>
-      <if test="contactName2 != null" >
-        contact_name2,
-      </if>
-      <if test="contactTel2 != null" >
-        contact_tel2,
-      </if>
       <if test="amount != null" >
         amount,
       </if>
@@ -183,14 +185,26 @@
       <if test="openBank != null" >
         open_bank,
       </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
       <if test="contactName != null" >
         contact_name,
       </if>
       <if test="contactTel != null" >
         contact_tel,
       </if>
-      <if test="planReturnTime != null" >
-        plan_return_time,
+      <if test="planRefundTime != null" >
+        plan_refund_time,
+      </if>
+      <if test="refundAmount != null" >
+        refund_amount,
+      </if>
+      <if test="refundTime != null" >
+        refund_time,
+      </if>
+      <if test="quotesAmount != null" >
+        quotes_amount,
       </if>
       <if test="payTime != null" >
         pay_time,
@@ -203,6 +217,15 @@
       </if>
       <if test="status != null" >
         status,
+      </if>
+      <if test="statusTime != null" >
+        status_time,
+      </if>
+      <if test="invoiceNo != null" >
+        invoice_no,
+      </if>
+      <if test="invoiceAmount != null" >
+        invoice_amount,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -230,12 +253,6 @@
       <if test="address != null" >
         #{address,jdbcType=VARCHAR},
       </if>
-      <if test="contactName2 != null" >
-        #{contactName2,jdbcType=VARCHAR},
-      </if>
-      <if test="contactTel2 != null" >
-        #{contactTel2,jdbcType=VARCHAR},
-      </if>
       <if test="amount != null" >
         #{amount,jdbcType=DOUBLE},
       </if>
@@ -248,14 +265,26 @@
       <if test="openBank != null" >
         #{openBank,jdbcType=VARCHAR},
       </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
       <if test="contactName != null" >
         #{contactName,jdbcType=VARCHAR},
       </if>
       <if test="contactTel != null" >
         #{contactTel,jdbcType=VARCHAR},
       </if>
-      <if test="planReturnTime != null" >
-        #{planReturnTime,jdbcType=TIMESTAMP},
+      <if test="planRefundTime != null" >
+        #{planRefundTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="refundAmount != null" >
+        #{refundAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="refundTime != null" >
+        #{refundTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="quotesAmount != null" >
+        #{quotesAmount,jdbcType=DOUBLE},
       </if>
       <if test="payTime != null" >
         #{payTime,jdbcType=TIMESTAMP},
@@ -268,6 +297,15 @@
       </if>
       <if test="status != null" >
         #{status,jdbcType=CHAR},
+      </if>
+      <if test="statusTime != null" >
+        #{statusTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="invoiceNo != null" >
+        #{invoiceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceAmount != null" >
+        #{invoiceAmount,jdbcType=DOUBLE},
       </if>
     </trim>
   </insert>
@@ -304,12 +342,6 @@
       <if test="record.address != null" >
         address = #{record.address,jdbcType=VARCHAR},
       </if>
-      <if test="record.contactName2 != null" >
-        contact_name2 = #{record.contactName2,jdbcType=VARCHAR},
-      </if>
-      <if test="record.contactTel2 != null" >
-        contact_tel2 = #{record.contactTel2,jdbcType=VARCHAR},
-      </if>
       <if test="record.amount != null" >
         amount = #{record.amount,jdbcType=DOUBLE},
       </if>
@@ -322,14 +354,26 @@
       <if test="record.openBank != null" >
         open_bank = #{record.openBank,jdbcType=VARCHAR},
       </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
       <if test="record.contactName != null" >
         contact_name = #{record.contactName,jdbcType=VARCHAR},
       </if>
       <if test="record.contactTel != null" >
         contact_tel = #{record.contactTel,jdbcType=VARCHAR},
       </if>
-      <if test="record.planReturnTime != null" >
-        plan_return_time = #{record.planReturnTime,jdbcType=TIMESTAMP},
+      <if test="record.planRefundTime != null" >
+        plan_refund_time = #{record.planRefundTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.refundAmount != null" >
+        refund_amount = #{record.refundAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="record.refundTime != null" >
+        refund_time = #{record.refundTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.quotesAmount != null" >
+        quotes_amount = #{record.quotesAmount,jdbcType=DOUBLE},
       </if>
       <if test="record.payTime != null" >
         pay_time = #{record.payTime,jdbcType=TIMESTAMP},
@@ -342,6 +386,15 @@
       </if>
       <if test="record.status != null" >
         status = #{record.status,jdbcType=CHAR},
+      </if>
+      <if test="record.statusTime != null" >
+        status_time = #{record.statusTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.invoiceNo != null" >
+        invoice_no = #{record.invoiceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.invoiceAmount != null" >
+        invoice_amount = #{record.invoiceAmount,jdbcType=DOUBLE},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -358,19 +411,24 @@
       brand_code = #{record.brandCode,jdbcType=VARCHAR},
       merchant = #{record.merchant,jdbcType=VARCHAR},
       address = #{record.address,jdbcType=VARCHAR},
-      contact_name2 = #{record.contactName2,jdbcType=VARCHAR},
-      contact_tel2 = #{record.contactTel2,jdbcType=VARCHAR},
       amount = #{record.amount,jdbcType=DOUBLE},
       account_no = #{record.accountNo,jdbcType=VARCHAR},
       account_name = #{record.accountName,jdbcType=VARCHAR},
       open_bank = #{record.openBank,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
       contact_name = #{record.contactName,jdbcType=VARCHAR},
       contact_tel = #{record.contactTel,jdbcType=VARCHAR},
-      plan_return_time = #{record.planReturnTime,jdbcType=TIMESTAMP},
+      plan_refund_time = #{record.planRefundTime,jdbcType=TIMESTAMP},
+      refund_amount = #{record.refundAmount,jdbcType=DOUBLE},
+      refund_time = #{record.refundTime,jdbcType=TIMESTAMP},
+      quotes_amount = #{record.quotesAmount,jdbcType=DOUBLE},
       pay_time = #{record.payTime,jdbcType=TIMESTAMP},
       pay_user = #{record.payUser,jdbcType=BIGINT},
       pay_amount = #{record.payAmount,jdbcType=DOUBLE},
-      status = #{record.status,jdbcType=CHAR}
+      status = #{record.status,jdbcType=CHAR},
+      status_time = #{record.statusTime,jdbcType=TIMESTAMP},
+      invoice_no = #{record.invoiceNo,jdbcType=VARCHAR},
+      invoice_amount = #{record.invoiceAmount,jdbcType=DOUBLE}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -399,12 +457,6 @@
       <if test="address != null" >
         address = #{address,jdbcType=VARCHAR},
       </if>
-      <if test="contactName2 != null" >
-        contact_name2 = #{contactName2,jdbcType=VARCHAR},
-      </if>
-      <if test="contactTel2 != null" >
-        contact_tel2 = #{contactTel2,jdbcType=VARCHAR},
-      </if>
       <if test="amount != null" >
         amount = #{amount,jdbcType=DOUBLE},
       </if>
@@ -417,14 +469,26 @@
       <if test="openBank != null" >
         open_bank = #{openBank,jdbcType=VARCHAR},
       </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
       <if test="contactName != null" >
         contact_name = #{contactName,jdbcType=VARCHAR},
       </if>
       <if test="contactTel != null" >
         contact_tel = #{contactTel,jdbcType=VARCHAR},
       </if>
-      <if test="planReturnTime != null" >
-        plan_return_time = #{planReturnTime,jdbcType=TIMESTAMP},
+      <if test="planRefundTime != null" >
+        plan_refund_time = #{planRefundTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="refundAmount != null" >
+        refund_amount = #{refundAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="refundTime != null" >
+        refund_time = #{refundTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="quotesAmount != null" >
+        quotes_amount = #{quotesAmount,jdbcType=DOUBLE},
       </if>
       <if test="payTime != null" >
         pay_time = #{payTime,jdbcType=TIMESTAMP},
@@ -438,6 +502,15 @@
       <if test="status != null" >
         status = #{status,jdbcType=CHAR},
       </if>
+      <if test="statusTime != null" >
+        status_time = #{statusTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="invoiceNo != null" >
+        invoice_no = #{invoiceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceAmount != null" >
+        invoice_amount = #{invoiceAmount,jdbcType=DOUBLE},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -450,19 +523,24 @@
       brand_code = #{brandCode,jdbcType=VARCHAR},
       merchant = #{merchant,jdbcType=VARCHAR},
       address = #{address,jdbcType=VARCHAR},
-      contact_name2 = #{contactName2,jdbcType=VARCHAR},
-      contact_tel2 = #{contactTel2,jdbcType=VARCHAR},
       amount = #{amount,jdbcType=DOUBLE},
       account_no = #{accountNo,jdbcType=VARCHAR},
       account_name = #{accountName,jdbcType=VARCHAR},
       open_bank = #{openBank,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
       contact_name = #{contactName,jdbcType=VARCHAR},
       contact_tel = #{contactTel,jdbcType=VARCHAR},
-      plan_return_time = #{planReturnTime,jdbcType=TIMESTAMP},
+      plan_refund_time = #{planRefundTime,jdbcType=TIMESTAMP},
+      refund_amount = #{refundAmount,jdbcType=DOUBLE},
+      refund_time = #{refundTime,jdbcType=TIMESTAMP},
+      quotes_amount = #{quotesAmount,jdbcType=DOUBLE},
       pay_time = #{payTime,jdbcType=TIMESTAMP},
       pay_user = #{payUser,jdbcType=BIGINT},
       pay_amount = #{payAmount,jdbcType=DOUBLE},
-      status = #{status,jdbcType=CHAR}
+      status = #{status,jdbcType=CHAR},
+      status_time = #{statusTime,jdbcType=TIMESTAMP},
+      invoice_no = #{invoiceNo,jdbcType=VARCHAR},
+      invoice_amount = #{invoiceAmount,jdbcType=DOUBLE}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

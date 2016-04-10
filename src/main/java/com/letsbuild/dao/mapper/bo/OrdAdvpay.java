@@ -19,10 +19,6 @@ public class OrdAdvpay {
 
     private String address;
 
-    private String contactName2;
-
-    private String contactTel2;
-
     private Double amount;
 
     private String accountNo;
@@ -31,11 +27,19 @@ public class OrdAdvpay {
 
     private String openBank;
 
+    private Timestamp createTime;
+
     private String contactName;
 
     private String contactTel;
 
-    private Timestamp planReturnTime;
+    private Timestamp planRefundTime;
+
+    private Double refundAmount;
+
+    private Timestamp refundTime;
+
+    private Double quotesAmount;
 
     private Timestamp payTime;
 
@@ -44,6 +48,12 @@ public class OrdAdvpay {
     private Double payAmount;
 
     private String status;
+
+    private Timestamp statusTime;
+
+    private String invoiceNo;
+
+    private Double invoiceAmount;
 
     public Long getId() {
         return id;
@@ -109,22 +119,6 @@ public class OrdAdvpay {
         this.address = address == null ? null : address.trim();
     }
 
-    public String getContactName2() {
-        return contactName2;
-    }
-
-    public void setContactName2(String contactName2) {
-        this.contactName2 = contactName2 == null ? null : contactName2.trim();
-    }
-
-    public String getContactTel2() {
-        return contactTel2;
-    }
-
-    public void setContactTel2(String contactTel2) {
-        this.contactTel2 = contactTel2 == null ? null : contactTel2.trim();
-    }
-
     public Double getAmount() {
         return amount;
     }
@@ -157,6 +151,14 @@ public class OrdAdvpay {
         this.openBank = openBank == null ? null : openBank.trim();
     }
 
+    public Timestamp getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Timestamp createTime) {
+        this.createTime = createTime;
+    }
+
     public String getContactName() {
         return contactName;
     }
@@ -173,12 +175,36 @@ public class OrdAdvpay {
         this.contactTel = contactTel == null ? null : contactTel.trim();
     }
 
-    public Timestamp getPlanReturnTime() {
-        return planReturnTime;
+    public Timestamp getPlanRefundTime() {
+        return planRefundTime;
     }
 
-    public void setPlanReturnTime(Timestamp planReturnTime) {
-        this.planReturnTime = planReturnTime;
+    public void setPlanRefundTime(Timestamp planRefundTime) {
+        this.planRefundTime = planRefundTime;
+    }
+
+    public Double getRefundAmount() {
+        return refundAmount;
+    }
+
+    public void setRefundAmount(Double refundAmount) {
+        this.refundAmount = refundAmount;
+    }
+
+    public Timestamp getRefundTime() {
+        return refundTime;
+    }
+
+    public void setRefundTime(Timestamp refundTime) {
+        this.refundTime = refundTime;
+    }
+
+    public Double getQuotesAmount() {
+        return quotesAmount;
+    }
+
+    public void setQuotesAmount(Double quotesAmount) {
+        this.quotesAmount = quotesAmount;
     }
 
     public Timestamp getPayTime() {
@@ -211,5 +237,29 @@ public class OrdAdvpay {
 
     public void setStatus(String status) {
         this.status = status == null ? null : status.trim();
+    }
+
+    public Timestamp getStatusTime() {
+        return statusTime;
+    }
+
+    public void setStatusTime(Timestamp statusTime) {
+        this.statusTime = statusTime;
+    }
+
+    public String getInvoiceNo() {
+        return invoiceNo;
+    }
+
+    public void setInvoiceNo(String invoiceNo) {
+        this.invoiceNo = invoiceNo == null ? null : invoiceNo.trim();
+    }
+
+    public Double getInvoiceAmount() {
+        return invoiceAmount;
+    }
+
+    public void setInvoiceAmount(Double invoiceAmount) {
+        this.invoiceAmount = invoiceAmount;
     }
 }

@@ -26,7 +26,7 @@ public class ForegiftSVImpl implements IForegiftSV {
         }
         int result = MapperFactory.getOrdForegiftMapper().updateByPrimaryKeySelective(foregift);
         if (result != 1) {
-            throw new BusinessException(ExceptCodeConstants.NO_DATA, "修改押金失败，订单不存在");
+            throw new BusinessException(ExceptCodeConstants.NO_DATA, "修改押金失败，记录不存在");
         }
     }
 

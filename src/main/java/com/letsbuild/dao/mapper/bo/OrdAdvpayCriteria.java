@@ -665,146 +665,6 @@ public class OrdAdvpayCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andContactName2IsNull() {
-            addCriterion("contact_name2 is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andContactName2IsNotNull() {
-            addCriterion("contact_name2 is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andContactName2EqualTo(String value) {
-            addCriterion("contact_name2 =", value, "contactName2");
-            return (Criteria) this;
-        }
-
-        public Criteria andContactName2NotEqualTo(String value) {
-            addCriterion("contact_name2 <>", value, "contactName2");
-            return (Criteria) this;
-        }
-
-        public Criteria andContactName2GreaterThan(String value) {
-            addCriterion("contact_name2 >", value, "contactName2");
-            return (Criteria) this;
-        }
-
-        public Criteria andContactName2GreaterThanOrEqualTo(String value) {
-            addCriterion("contact_name2 >=", value, "contactName2");
-            return (Criteria) this;
-        }
-
-        public Criteria andContactName2LessThan(String value) {
-            addCriterion("contact_name2 <", value, "contactName2");
-            return (Criteria) this;
-        }
-
-        public Criteria andContactName2LessThanOrEqualTo(String value) {
-            addCriterion("contact_name2 <=", value, "contactName2");
-            return (Criteria) this;
-        }
-
-        public Criteria andContactName2Like(String value) {
-            addCriterion("contact_name2 like", value, "contactName2");
-            return (Criteria) this;
-        }
-
-        public Criteria andContactName2NotLike(String value) {
-            addCriterion("contact_name2 not like", value, "contactName2");
-            return (Criteria) this;
-        }
-
-        public Criteria andContactName2In(List<String> values) {
-            addCriterion("contact_name2 in", values, "contactName2");
-            return (Criteria) this;
-        }
-
-        public Criteria andContactName2NotIn(List<String> values) {
-            addCriterion("contact_name2 not in", values, "contactName2");
-            return (Criteria) this;
-        }
-
-        public Criteria andContactName2Between(String value1, String value2) {
-            addCriterion("contact_name2 between", value1, value2, "contactName2");
-            return (Criteria) this;
-        }
-
-        public Criteria andContactName2NotBetween(String value1, String value2) {
-            addCriterion("contact_name2 not between", value1, value2, "contactName2");
-            return (Criteria) this;
-        }
-
-        public Criteria andContactTel2IsNull() {
-            addCriterion("contact_tel2 is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andContactTel2IsNotNull() {
-            addCriterion("contact_tel2 is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andContactTel2EqualTo(String value) {
-            addCriterion("contact_tel2 =", value, "contactTel2");
-            return (Criteria) this;
-        }
-
-        public Criteria andContactTel2NotEqualTo(String value) {
-            addCriterion("contact_tel2 <>", value, "contactTel2");
-            return (Criteria) this;
-        }
-
-        public Criteria andContactTel2GreaterThan(String value) {
-            addCriterion("contact_tel2 >", value, "contactTel2");
-            return (Criteria) this;
-        }
-
-        public Criteria andContactTel2GreaterThanOrEqualTo(String value) {
-            addCriterion("contact_tel2 >=", value, "contactTel2");
-            return (Criteria) this;
-        }
-
-        public Criteria andContactTel2LessThan(String value) {
-            addCriterion("contact_tel2 <", value, "contactTel2");
-            return (Criteria) this;
-        }
-
-        public Criteria andContactTel2LessThanOrEqualTo(String value) {
-            addCriterion("contact_tel2 <=", value, "contactTel2");
-            return (Criteria) this;
-        }
-
-        public Criteria andContactTel2Like(String value) {
-            addCriterion("contact_tel2 like", value, "contactTel2");
-            return (Criteria) this;
-        }
-
-        public Criteria andContactTel2NotLike(String value) {
-            addCriterion("contact_tel2 not like", value, "contactTel2");
-            return (Criteria) this;
-        }
-
-        public Criteria andContactTel2In(List<String> values) {
-            addCriterion("contact_tel2 in", values, "contactTel2");
-            return (Criteria) this;
-        }
-
-        public Criteria andContactTel2NotIn(List<String> values) {
-            addCriterion("contact_tel2 not in", values, "contactTel2");
-            return (Criteria) this;
-        }
-
-        public Criteria andContactTel2Between(String value1, String value2) {
-            addCriterion("contact_tel2 between", value1, value2, "contactTel2");
-            return (Criteria) this;
-        }
-
-        public Criteria andContactTel2NotBetween(String value1, String value2) {
-            addCriterion("contact_tel2 not between", value1, value2, "contactTel2");
-            return (Criteria) this;
-        }
-
         public Criteria andAmountIsNull() {
             addCriterion("amount is null");
             return (Criteria) this;
@@ -1075,6 +935,66 @@ public class OrdAdvpayCriteria {
             return (Criteria) this;
         }
 
+        public Criteria andCreateTimeIsNull() {
+            addCriterion("create_time is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeIsNotNull() {
+            addCriterion("create_time is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeEqualTo(Timestamp value) {
+            addCriterion("create_time =", value, "createTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeNotEqualTo(Timestamp value) {
+            addCriterion("create_time <>", value, "createTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeGreaterThan(Timestamp value) {
+            addCriterion("create_time >", value, "createTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeGreaterThanOrEqualTo(Timestamp value) {
+            addCriterion("create_time >=", value, "createTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeLessThan(Timestamp value) {
+            addCriterion("create_time <", value, "createTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeLessThanOrEqualTo(Timestamp value) {
+            addCriterion("create_time <=", value, "createTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeIn(List<Timestamp> values) {
+            addCriterion("create_time in", values, "createTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeNotIn(List<Timestamp> values) {
+            addCriterion("create_time not in", values, "createTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeBetween(Timestamp value1, Timestamp value2) {
+            addCriterion("create_time between", value1, value2, "createTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeNotBetween(Timestamp value1, Timestamp value2) {
+            addCriterion("create_time not between", value1, value2, "createTime");
+            return (Criteria) this;
+        }
+
         public Criteria andContactNameIsNull() {
             addCriterion("contact_name is null");
             return (Criteria) this;
@@ -1215,63 +1135,243 @@ public class OrdAdvpayCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andPlanReturnTimeIsNull() {
-            addCriterion("plan_return_time is null");
+        public Criteria andPlanRefundTimeIsNull() {
+            addCriterion("plan_refund_time is null");
             return (Criteria) this;
         }
 
-        public Criteria andPlanReturnTimeIsNotNull() {
-            addCriterion("plan_return_time is not null");
+        public Criteria andPlanRefundTimeIsNotNull() {
+            addCriterion("plan_refund_time is not null");
             return (Criteria) this;
         }
 
-        public Criteria andPlanReturnTimeEqualTo(Timestamp value) {
-            addCriterion("plan_return_time =", value, "planReturnTime");
+        public Criteria andPlanRefundTimeEqualTo(Timestamp value) {
+            addCriterion("plan_refund_time =", value, "planRefundTime");
             return (Criteria) this;
         }
 
-        public Criteria andPlanReturnTimeNotEqualTo(Timestamp value) {
-            addCriterion("plan_return_time <>", value, "planReturnTime");
+        public Criteria andPlanRefundTimeNotEqualTo(Timestamp value) {
+            addCriterion("plan_refund_time <>", value, "planRefundTime");
             return (Criteria) this;
         }
 
-        public Criteria andPlanReturnTimeGreaterThan(Timestamp value) {
-            addCriterion("plan_return_time >", value, "planReturnTime");
+        public Criteria andPlanRefundTimeGreaterThan(Timestamp value) {
+            addCriterion("plan_refund_time >", value, "planRefundTime");
             return (Criteria) this;
         }
 
-        public Criteria andPlanReturnTimeGreaterThanOrEqualTo(Timestamp value) {
-            addCriterion("plan_return_time >=", value, "planReturnTime");
+        public Criteria andPlanRefundTimeGreaterThanOrEqualTo(Timestamp value) {
+            addCriterion("plan_refund_time >=", value, "planRefundTime");
             return (Criteria) this;
         }
 
-        public Criteria andPlanReturnTimeLessThan(Timestamp value) {
-            addCriterion("plan_return_time <", value, "planReturnTime");
+        public Criteria andPlanRefundTimeLessThan(Timestamp value) {
+            addCriterion("plan_refund_time <", value, "planRefundTime");
             return (Criteria) this;
         }
 
-        public Criteria andPlanReturnTimeLessThanOrEqualTo(Timestamp value) {
-            addCriterion("plan_return_time <=", value, "planReturnTime");
+        public Criteria andPlanRefundTimeLessThanOrEqualTo(Timestamp value) {
+            addCriterion("plan_refund_time <=", value, "planRefundTime");
             return (Criteria) this;
         }
 
-        public Criteria andPlanReturnTimeIn(List<Timestamp> values) {
-            addCriterion("plan_return_time in", values, "planReturnTime");
+        public Criteria andPlanRefundTimeIn(List<Timestamp> values) {
+            addCriterion("plan_refund_time in", values, "planRefundTime");
             return (Criteria) this;
         }
 
-        public Criteria andPlanReturnTimeNotIn(List<Timestamp> values) {
-            addCriterion("plan_return_time not in", values, "planReturnTime");
+        public Criteria andPlanRefundTimeNotIn(List<Timestamp> values) {
+            addCriterion("plan_refund_time not in", values, "planRefundTime");
             return (Criteria) this;
         }
 
-        public Criteria andPlanReturnTimeBetween(Timestamp value1, Timestamp value2) {
-            addCriterion("plan_return_time between", value1, value2, "planReturnTime");
+        public Criteria andPlanRefundTimeBetween(Timestamp value1, Timestamp value2) {
+            addCriterion("plan_refund_time between", value1, value2, "planRefundTime");
             return (Criteria) this;
         }
 
-        public Criteria andPlanReturnTimeNotBetween(Timestamp value1, Timestamp value2) {
-            addCriterion("plan_return_time not between", value1, value2, "planReturnTime");
+        public Criteria andPlanRefundTimeNotBetween(Timestamp value1, Timestamp value2) {
+            addCriterion("plan_refund_time not between", value1, value2, "planRefundTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andRefundAmountIsNull() {
+            addCriterion("refund_amount is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRefundAmountIsNotNull() {
+            addCriterion("refund_amount is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRefundAmountEqualTo(Double value) {
+            addCriterion("refund_amount =", value, "refundAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andRefundAmountNotEqualTo(Double value) {
+            addCriterion("refund_amount <>", value, "refundAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andRefundAmountGreaterThan(Double value) {
+            addCriterion("refund_amount >", value, "refundAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andRefundAmountGreaterThanOrEqualTo(Double value) {
+            addCriterion("refund_amount >=", value, "refundAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andRefundAmountLessThan(Double value) {
+            addCriterion("refund_amount <", value, "refundAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andRefundAmountLessThanOrEqualTo(Double value) {
+            addCriterion("refund_amount <=", value, "refundAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andRefundAmountIn(List<Double> values) {
+            addCriterion("refund_amount in", values, "refundAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andRefundAmountNotIn(List<Double> values) {
+            addCriterion("refund_amount not in", values, "refundAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andRefundAmountBetween(Double value1, Double value2) {
+            addCriterion("refund_amount between", value1, value2, "refundAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andRefundAmountNotBetween(Double value1, Double value2) {
+            addCriterion("refund_amount not between", value1, value2, "refundAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andRefundTimeIsNull() {
+            addCriterion("refund_time is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRefundTimeIsNotNull() {
+            addCriterion("refund_time is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRefundTimeEqualTo(Timestamp value) {
+            addCriterion("refund_time =", value, "refundTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andRefundTimeNotEqualTo(Timestamp value) {
+            addCriterion("refund_time <>", value, "refundTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andRefundTimeGreaterThan(Timestamp value) {
+            addCriterion("refund_time >", value, "refundTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andRefundTimeGreaterThanOrEqualTo(Timestamp value) {
+            addCriterion("refund_time >=", value, "refundTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andRefundTimeLessThan(Timestamp value) {
+            addCriterion("refund_time <", value, "refundTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andRefundTimeLessThanOrEqualTo(Timestamp value) {
+            addCriterion("refund_time <=", value, "refundTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andRefundTimeIn(List<Timestamp> values) {
+            addCriterion("refund_time in", values, "refundTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andRefundTimeNotIn(List<Timestamp> values) {
+            addCriterion("refund_time not in", values, "refundTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andRefundTimeBetween(Timestamp value1, Timestamp value2) {
+            addCriterion("refund_time between", value1, value2, "refundTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andRefundTimeNotBetween(Timestamp value1, Timestamp value2) {
+            addCriterion("refund_time not between", value1, value2, "refundTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuotesAmountIsNull() {
+            addCriterion("quotes_amount is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuotesAmountIsNotNull() {
+            addCriterion("quotes_amount is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuotesAmountEqualTo(Double value) {
+            addCriterion("quotes_amount =", value, "quotesAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuotesAmountNotEqualTo(Double value) {
+            addCriterion("quotes_amount <>", value, "quotesAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuotesAmountGreaterThan(Double value) {
+            addCriterion("quotes_amount >", value, "quotesAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuotesAmountGreaterThanOrEqualTo(Double value) {
+            addCriterion("quotes_amount >=", value, "quotesAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuotesAmountLessThan(Double value) {
+            addCriterion("quotes_amount <", value, "quotesAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuotesAmountLessThanOrEqualTo(Double value) {
+            addCriterion("quotes_amount <=", value, "quotesAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuotesAmountIn(List<Double> values) {
+            addCriterion("quotes_amount in", values, "quotesAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuotesAmountNotIn(List<Double> values) {
+            addCriterion("quotes_amount not in", values, "quotesAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuotesAmountBetween(Double value1, Double value2) {
+            addCriterion("quotes_amount between", value1, value2, "quotesAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuotesAmountNotBetween(Double value1, Double value2) {
+            addCriterion("quotes_amount not between", value1, value2, "quotesAmount");
             return (Criteria) this;
         }
 
@@ -1522,6 +1622,196 @@ public class OrdAdvpayCriteria {
 
         public Criteria andStatusNotBetween(String value1, String value2) {
             addCriterion("status not between", value1, value2, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusTimeIsNull() {
+            addCriterion("status_time is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusTimeIsNotNull() {
+            addCriterion("status_time is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusTimeEqualTo(Timestamp value) {
+            addCriterion("status_time =", value, "statusTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusTimeNotEqualTo(Timestamp value) {
+            addCriterion("status_time <>", value, "statusTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusTimeGreaterThan(Timestamp value) {
+            addCriterion("status_time >", value, "statusTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusTimeGreaterThanOrEqualTo(Timestamp value) {
+            addCriterion("status_time >=", value, "statusTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusTimeLessThan(Timestamp value) {
+            addCriterion("status_time <", value, "statusTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusTimeLessThanOrEqualTo(Timestamp value) {
+            addCriterion("status_time <=", value, "statusTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusTimeIn(List<Timestamp> values) {
+            addCriterion("status_time in", values, "statusTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusTimeNotIn(List<Timestamp> values) {
+            addCriterion("status_time not in", values, "statusTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusTimeBetween(Timestamp value1, Timestamp value2) {
+            addCriterion("status_time between", value1, value2, "statusTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusTimeNotBetween(Timestamp value1, Timestamp value2) {
+            addCriterion("status_time not between", value1, value2, "statusTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andInvoiceNoIsNull() {
+            addCriterion("invoice_no is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andInvoiceNoIsNotNull() {
+            addCriterion("invoice_no is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andInvoiceNoEqualTo(String value) {
+            addCriterion("invoice_no =", value, "invoiceNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andInvoiceNoNotEqualTo(String value) {
+            addCriterion("invoice_no <>", value, "invoiceNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andInvoiceNoGreaterThan(String value) {
+            addCriterion("invoice_no >", value, "invoiceNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andInvoiceNoGreaterThanOrEqualTo(String value) {
+            addCriterion("invoice_no >=", value, "invoiceNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andInvoiceNoLessThan(String value) {
+            addCriterion("invoice_no <", value, "invoiceNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andInvoiceNoLessThanOrEqualTo(String value) {
+            addCriterion("invoice_no <=", value, "invoiceNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andInvoiceNoLike(String value) {
+            addCriterion("invoice_no like", value, "invoiceNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andInvoiceNoNotLike(String value) {
+            addCriterion("invoice_no not like", value, "invoiceNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andInvoiceNoIn(List<String> values) {
+            addCriterion("invoice_no in", values, "invoiceNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andInvoiceNoNotIn(List<String> values) {
+            addCriterion("invoice_no not in", values, "invoiceNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andInvoiceNoBetween(String value1, String value2) {
+            addCriterion("invoice_no between", value1, value2, "invoiceNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andInvoiceNoNotBetween(String value1, String value2) {
+            addCriterion("invoice_no not between", value1, value2, "invoiceNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andInvoiceAmountIsNull() {
+            addCriterion("invoice_amount is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andInvoiceAmountIsNotNull() {
+            addCriterion("invoice_amount is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andInvoiceAmountEqualTo(Double value) {
+            addCriterion("invoice_amount =", value, "invoiceAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andInvoiceAmountNotEqualTo(Double value) {
+            addCriterion("invoice_amount <>", value, "invoiceAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andInvoiceAmountGreaterThan(Double value) {
+            addCriterion("invoice_amount >", value, "invoiceAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andInvoiceAmountGreaterThanOrEqualTo(Double value) {
+            addCriterion("invoice_amount >=", value, "invoiceAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andInvoiceAmountLessThan(Double value) {
+            addCriterion("invoice_amount <", value, "invoiceAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andInvoiceAmountLessThanOrEqualTo(Double value) {
+            addCriterion("invoice_amount <=", value, "invoiceAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andInvoiceAmountIn(List<Double> values) {
+            addCriterion("invoice_amount in", values, "invoiceAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andInvoiceAmountNotIn(List<Double> values) {
+            addCriterion("invoice_amount not in", values, "invoiceAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andInvoiceAmountBetween(Double value1, Double value2) {
+            addCriterion("invoice_amount between", value1, value2, "invoiceAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andInvoiceAmountNotBetween(Double value1, Double value2) {
+            addCriterion("invoice_amount not between", value1, value2, "invoiceAmount");
             return (Criteria) this;
         }
     }
