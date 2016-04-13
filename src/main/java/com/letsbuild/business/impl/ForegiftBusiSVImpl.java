@@ -1,9 +1,12 @@
 package com.letsbuild.business.impl;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.alibaba.fastjson.JSON;
 import com.letsbuild.base.exception.BusinessException;
 import com.letsbuild.base.util.BeanUtil;
 import com.letsbuild.base.util.DateUtil;
@@ -19,12 +22,15 @@ import com.letsbuild.vo.ForegiftVo;
 @Service
 @Transactional
 public class ForegiftBusiSVImpl implements IForegiftBusiSV {
+    
+    private static final Logger logger = LoggerFactory.getLogger(ForegiftBusiSVImpl.class);
 
     @Autowired
     private IForegiftSV foregiftSV;
 
     @Override
     public void applyForegift(ForegiftVo vo) throws BusinessException {
+        logger.info("开始押金申请:{}",JSON.toJSONString(vo));
         OrdForegift bo = new OrdForegift();
         // 押金申请属性
         Prop[] props = { new Prop("projectCode"), new Prop("projectLeader"),
@@ -37,10 +43,12 @@ public class ForegiftBusiSVImpl implements IForegiftBusiSV {
         bo.setStatus(DbConstants.OrdForegift.Status.APPLY);
         bo.setStatusTime(DateUtil.getSysDate());
         foregiftSV.addForegift(bo);
+        logger.info("押金申请完成");
     }
 
     @Override
     public void payForegift(ForegiftVo vo) throws BusinessException {
+        logger.info("开始押金支付:{}",JSON.toJSONString(vo));
         OrdForegift foregift = foregiftSV.queryForegiftById(vo.getId());
         if (foregift == null) {
             throw new BusinessException(ExceptCodeConstants.NO_DATA, "押金不存在");
@@ -56,10 +64,12 @@ public class ForegiftBusiSVImpl implements IForegiftBusiSV {
         bo.setStatus(DbConstants.OrdForegift.Status.PAY);
         bo.setStatusTime(DateUtil.getSysDate());
         foregiftSV.modForegift(bo);
+        logger.info("押金支付完成");
     }
 
     @Override
     public void refundForegift(ForegiftVo vo) throws BusinessException {
+        logger.info("开始押金退款:{}",JSON.toJSONString(vo));
         OrdForegift foregift = foregiftSV.queryForegiftById(vo.getId());
         if (foregift == null) {
             throw new BusinessException(ExceptCodeConstants.NO_DATA, "押金不存在");
@@ -78,5 +88,6 @@ public class ForegiftBusiSVImpl implements IForegiftBusiSV {
         bo.setStatus(DbConstants.OrdForegift.Status.REFUND);
         bo.setStatusTime(DateUtil.getSysDate());
         foregiftSV.modForegift(bo);
+        logger.info("押金退款完成");
     }
 }

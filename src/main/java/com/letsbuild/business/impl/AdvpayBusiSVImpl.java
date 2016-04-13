@@ -1,9 +1,12 @@
 package com.letsbuild.business.impl;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.alibaba.fastjson.JSON;
 import com.letsbuild.base.exception.BusinessException;
 import com.letsbuild.base.util.BeanUtil;
 import com.letsbuild.base.util.DateUtil;
@@ -19,12 +22,15 @@ import com.letsbuild.vo.AdvpayVo;
 @Service
 @Transactional
 public class AdvpayBusiSVImpl implements IAdvpayBusiSV {
+    
+    private static final Logger logger = LoggerFactory.getLogger(AdvpayBusiSVImpl.class);
 
     @Autowired
     private IAdvpaySV advpaySV;
 
     @Override
     public void applyAdvpay(AdvpayVo vo) throws BusinessException {
+        logger.info("开始垫付申请:{}",JSON.toJSONString(vo));
         OrdAdvpay bo = new OrdAdvpay();
         // 垫付申请属性
         Prop[] props = { new Prop("projectCode"), new Prop("projectLeader"),
@@ -38,11 +44,12 @@ public class AdvpayBusiSVImpl implements IAdvpayBusiSV {
         bo.setStatus(DbConstants.OrdAdvpay.Status.APPLY);
         bo.setStatusTime(DateUtil.getSysDate());
         advpaySV.addAdvpay(bo);
-
+        logger.info("垫付申请完成");
     }
 
     @Override
     public void payAdvpay(AdvpayVo vo) throws BusinessException {
+        logger.info("开始垫付支付:{}",JSON.toJSONString(vo));
         OrdAdvpay advpay = advpaySV.queryAdvpayById(vo.getId());
         if (advpay == null) {
             throw new BusinessException(ExceptCodeConstants.NO_DATA, "垫付不存在");
@@ -58,11 +65,12 @@ public class AdvpayBusiSVImpl implements IAdvpayBusiSV {
         bo.setStatus(DbConstants.OrdAdvpay.Status.PAY);
         bo.setStatusTime(DateUtil.getSysDate());
         advpaySV.modAdvpay(bo);
-
+        logger.info("垫付支付完成");
     }
 
     @Override
     public void refundAdvpay(AdvpayVo vo) throws BusinessException {
+        logger.info("开始垫付退款:{}",JSON.toJSONString(vo));
         OrdAdvpay advpay = advpaySV.queryAdvpayById(vo.getId());
         if (advpay == null) {
             throw new BusinessException(ExceptCodeConstants.NO_DATA, "垫付不存在");
@@ -81,7 +89,7 @@ public class AdvpayBusiSVImpl implements IAdvpayBusiSV {
         bo.setStatus(DbConstants.OrdAdvpay.Status.REFUND);
         bo.setStatusTime(DateUtil.getSysDate());
         advpaySV.modAdvpay(bo);
-
+        logger.info("垫付退款完成");
     }
 
 }

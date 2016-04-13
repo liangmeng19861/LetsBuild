@@ -4,10 +4,13 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.alibaba.fastjson.JSON;
 import com.letsbuild.base.exception.BusinessException;
 import com.letsbuild.base.util.BeanUtil;
 import com.letsbuild.base.util.BeanUtil.Prop;
@@ -27,6 +30,8 @@ import com.letsbuild.vo.StageVo;
 @Service
 @Transactional
 public class OrderBusiSVImpl implements IOrderBusiSV {
+    
+    private static final Logger logger = LoggerFactory.getLogger(OrderBusiSVImpl.class);
 
     @Autowired
     private IOrdOrderSV ordOrderSV;
@@ -36,6 +41,7 @@ public class OrderBusiSVImpl implements IOrderBusiSV {
 
     @Override
     public void receiveOrder(OrderVo vo) throws BusinessException {
+        logger.info("开始订单接受:{}",JSON.toJSONString(vo));
         OrdOrder bo = new OrdOrder();
         // 接单订单属性
         Prop[] props = { new Prop("projectCode"), new Prop("projectLeader"),
@@ -48,10 +54,12 @@ public class OrderBusiSVImpl implements IOrderBusiSV {
         bo.setStatus(DbConstants.OrdOrder.Status.RECEIVE);
         bo.setStatusTime(DateUtil.getSysDate());
         ordOrderSV.addOrder(bo);
+        logger.info("订单接受完成");
     }
 
     @Override
     public void quoteOrder(OrderVo vo) throws BusinessException {
+        logger.info("开始订单报价:{}",JSON.toJSONString(vo));
         OrdOrder order = ordOrderSV.queryOrdOrderById(vo.getId());
         if (order == null) {
             throw new BusinessException(ExceptCodeConstants.NO_DATA, "订单不存在");
@@ -70,10 +78,12 @@ public class OrderBusiSVImpl implements IOrderBusiSV {
         bo.setStatus(DbConstants.OrdOrder.Status.QUOTES);
         bo.setStatusTime(DateUtil.getSysDate());
         ordOrderSV.modOrder(bo);
+        logger.info("订单报价完成");
     }
 
     @Override
     public void submitOrder(OrderVo vo) throws BusinessException {
+        logger.info("开始下单:{}",JSON.toJSONString(vo));
         OrdOrder order = ordOrderSV.queryOrdOrderById(vo.getId());
         if (order == null) {
             throw new BusinessException(ExceptCodeConstants.NO_DATA, "订单不存在");
@@ -103,11 +113,12 @@ public class OrderBusiSVImpl implements IOrderBusiSV {
             stageBo.setOrderId(vo.getId());
             ordStageSV.addOrdStage(stageBo);
         }
-
+        logger.info("下单结束");
     }
 
     @Override
     public void acceptanceOrder(OrderVo vo) throws BusinessException {
+        logger.info("开始订单验收:{}",JSON.toJSONString(vo));
         OrdOrder order = ordOrderSV.queryOrdOrderById(vo.getId());
         if (order == null) {
             throw new BusinessException(ExceptCodeConstants.NO_DATA, "订单不存在");
@@ -127,10 +138,12 @@ public class OrderBusiSVImpl implements IOrderBusiSV {
         bo.setStatusTime(DateUtil.getSysDate());
 
         ordOrderSV.modOrder(bo);
+        logger.info("订单验收完成");
     }
 
     @Override
     public void invoiceOrder(OrderVo vo) throws BusinessException {
+        logger.info("开始订单开票:{}",JSON.toJSONString(vo));
         OrdOrder order = ordOrderSV.queryOrdOrderById(vo.getId());
         if (order == null) {
             throw new BusinessException(ExceptCodeConstants.NO_DATA, "订单不存在");
@@ -154,10 +167,12 @@ public class OrderBusiSVImpl implements IOrderBusiSV {
             BeanUtil.copySelectProperties(stageVo, stageBo, props);
             ordStageSV.modOrdStage(stageBo);
         }
+        logger.info("订单开票完成");
     }
 
     @Override
     public void incomeOrder(OrderVo vo) throws BusinessException {
+        logger.info("开始订单回款:{}",JSON.toJSONString(vo));
         OrdOrder order = ordOrderSV.queryOrdOrderById(vo.getId());
         if (order == null) {
             throw new BusinessException(ExceptCodeConstants.NO_DATA, "订单不存在");
@@ -180,10 +195,12 @@ public class OrderBusiSVImpl implements IOrderBusiSV {
             BeanUtil.copySelectProperties(stageVo, stageBo, props);
             ordStageSV.modOrdStage(stageBo);
         }
+        logger.info("订单回款完成");
     }
 
     @Override
     public void modifyOrder(OrderVo vo) throws BusinessException {
+        logger.info("开始修改订单:{}",JSON.toJSONString(vo));
         OrdOrder order = ordOrderSV.queryOrdOrderById(vo.getId());
         if (order == null) {
             throw new BusinessException(ExceptCodeConstants.NO_DATA, "订单不存在");
@@ -207,10 +224,12 @@ public class OrderBusiSVImpl implements IOrderBusiSV {
             BeanUtil.copySelectProperties(stageVo, stageBo, props);
             ordStageSV.modOrdStage(stageBo);
         }
+        logger.info("订单修改完成");
     }
 
     @Override
     public OrderVo queryOrder(Long id) throws BusinessException {
+        logger.info("开始查询订单");
         // 查询订单
         OrdOrder order = ordOrderSV.queryOrdOrderById(id);
         if (order == null) {
@@ -231,6 +250,7 @@ public class OrderBusiSVImpl implements IOrderBusiSV {
             // FIXME 翻译工期属性
             orderVo.getStages().add(stageVo);
         }
+        logger.info("订单查询完成:{}",JSON.toJSONString(orderVo));
         return orderVo;
     }
 
@@ -238,6 +258,7 @@ public class OrderBusiSVImpl implements IOrderBusiSV {
     public List<OrderVo> queryOrder(Long projectLeader, String brandCode, String projectCode,
             String provinceCode, String cityCode, String merchant, Timestamp start, Timestamp end,
             String timeType) throws BusinessException {
+        logger.info("开始查询订单");
         OrdOrder order = new OrdOrder();
         order.setProjectLeader(projectLeader);
         order.setBrandCode(brandCode);
@@ -256,6 +277,7 @@ public class OrderBusiSVImpl implements IOrderBusiSV {
             // FIXME 翻译订单属性
             voList.add(vo);
         }
+        logger.info("订单查询完成:{}",JSON.toJSONString(voList));
         return voList;
     }
 

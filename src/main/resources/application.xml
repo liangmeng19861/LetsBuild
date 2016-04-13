@@ -43,7 +43,7 @@
 	<mybatis:scan base-package="com.letsbuild.dao.mapper.custom" />
 
 	<!-- 配置SqlSessionTemplate -->
-	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate" scope="prototype">
 		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory" />
 	</bean>
 	<!-- 事务管理器 -->
@@ -84,6 +84,18 @@
 					<property name="name" value="sysLabelCache" />
 				</bean>
 			</set>
+		</property>
+	</bean>
+	
+	<!-- log4j -->
+	<bean id="log4jInitializer" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+		<property name="staticMethod">
+			<value>org.springframework.util.Log4jConfigurer.initLogging</value>
+		</property>
+		<property name="arguments">
+			<list>
+				<value>classpath:log4j.properties</value>
+			</list>
 		</property>
 	</bean>
 

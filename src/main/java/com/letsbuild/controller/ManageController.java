@@ -6,14 +6,13 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.alibaba.fastjson.JSON;
-import com.letsbuild.dao.mapper.bo.SysMenu;
 import com.letsbuild.dao.mapper.bo.SysUser;
 import com.letsbuild.service.interfaces.ISysMenuSV;
 import com.letsbuild.service.interfaces.ISysUserSV;
@@ -22,7 +21,7 @@ import com.letsbuild.service.interfaces.ISysUserSV;
 @RequestMapping(value = "/manage")
 public class ManageController extends BaseController {
 	
-	private static final Logger logger = LogManager.getLogger(ManageController.class);
+    private static final Logger logger = LoggerFactory.getLogger(ManageController.class);
 	
 	@Autowired
 	private ISysUserSV iUserSV;

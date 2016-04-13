@@ -3,8 +3,8 @@ package com.letsbuild.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +18,7 @@ import com.letsbuild.vo.OrderVo;
 @RequestMapping(value = "/order")
 public class OrderController extends BaseController {
 
-    private static final Logger logger = LogManager.getLogger(OrderController.class);
+    private static final Logger logger = LoggerFactory.getLogger(OrderController.class);
 
     @Autowired
     private IOrderBusiSV orderBusiSV;

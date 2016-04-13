@@ -2,6 +2,8 @@ package com.letsbuild.cache;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
@@ -21,6 +23,8 @@ import com.letsbuild.service.interfaces.ISysMenuSV;
 @Component
 public class CacheService {
 
+    private static final Logger logger = LoggerFactory.getLogger(CacheService.class);
+
     @Autowired
     private ISysMenuSV sysMenuSV;
 
@@ -29,17 +33,20 @@ public class CacheService {
 
     @Cacheable(value = "sysMenuCache", key = "#menuId")
     public SysMenu querySysMenu(Long menuId) throws BusinessException {
+        logger.info("菜单缓存中未找到[key={}],重新查询数据库", menuId);
         return sysMenuSV.querySysMenu(menuId);
     }
 
     @Cacheable(value = "sysLabelCache", key = "#table.concat(.).concat(#column)")
     public List<SysLabel> querySysLabel(String table, String column) throws BusinessException {
+        logger.info("字段枚举缓存中未找到[key={}.{}],重新查询数据库", table, column);
         return sysLabelSV.querySysLabel(table, column);
     }
 
     @Cacheable(value = "sysLabelCache", key = "#table.concat(.).concat(#column).cancat(.).cancat(#value)")
     public SysLabel querySysLabel(String table, String column, String value)
             throws BusinessException {
+        logger.info("字段枚举缓存中未找到[key={}.{}.{}],重新查询数据库", table, column, value);
         return sysLabelSV.querySysLabel(table, column, value);
     }
 }

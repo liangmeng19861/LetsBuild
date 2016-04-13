@@ -10,8 +10,8 @@ import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpException;
 import org.apache.commons.httpclient.NameValuePair;
 import org.apache.commons.httpclient.methods.PostMethod;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -20,7 +20,7 @@ import org.apache.logging.log4j.Logger;
  * @author lilg
  */
 public class HttpPost {
-    private static final Logger log = LogManager.getLogger(HttpPost.class);
+    private static final Logger logger = LoggerFactory.getLogger(HttpPost.class);
 
     /**
      * 方法一:设置RequestHeader编码为utf－8
@@ -52,8 +52,8 @@ public class HttpPost {
         // 执行postMethod
         try {
             httpClient.executeMethod(postMethod);
-            log.info("请求报文：{}", postMethod.getRequestBodyAsString());
-            log.info("返回报文：{}", postMethod.getResponseBodyAsString());
+            logger.info("请求报文：{}", postMethod.getRequestBodyAsString());
+            logger.info("返回报文：{}", postMethod.getResponseBodyAsString());
             return postMethod;
         } catch (HttpException e) {
             e.printStackTrace();
