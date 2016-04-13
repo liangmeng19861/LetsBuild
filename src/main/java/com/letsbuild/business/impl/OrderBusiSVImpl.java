@@ -13,6 +13,7 @@ import com.letsbuild.base.util.BeanUtil;
 import com.letsbuild.base.util.BeanUtil.Prop;
 import com.letsbuild.base.util.CollectionUtil;
 import com.letsbuild.base.util.DateUtil;
+import com.letsbuild.base.util.SeqUtil;
 import com.letsbuild.business.interfaces.IOrderBusiSV;
 import com.letsbuild.constants.DbConstants;
 import com.letsbuild.constants.ExceptCodeConstants;
@@ -42,7 +43,7 @@ public class OrderBusiSVImpl implements IOrderBusiSV {
                 new Prop("merchant"), new Prop("address"), new Prop("contactName"),
                 new Prop("contactTel"), new Prop("type"), new Prop("remark", false) };
         BeanUtil.copySelectProperties(vo, bo, props);
-        bo.setId(1l);// FIXME 序列怎么弄
+        bo.setId(SeqUtil.getNewOrderId());
         bo.setReceiveTime(DateUtil.getSysDate());
         bo.setStatus(DbConstants.OrdOrder.Status.RECEIVE);
         bo.setStatusTime(DateUtil.getSysDate());
@@ -98,7 +99,7 @@ public class OrderBusiSVImpl implements IOrderBusiSV {
         for (StageVo stageVo : vo.getStages()) {
             OrdStage stageBo = new OrdStage();
             BeanUtil.copySelectProperties(stageVo, stageBo, props);
-            stageBo.setId(1l);// FIXME 主键
+            stageBo.setId(SeqUtil.getNewStageId());
             stageBo.setOrderId(vo.getId());
             ordStageSV.addOrdStage(stageBo);
         }

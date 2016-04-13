@@ -3,14 +3,18 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:cache="http://www.springframework.org/schema/cache"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans    
+	xmlns:mybatis="http://mybatis.org/schema/mybatis-spring"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans   
+	 
         http://www.springframework.org/schema/beans/spring-beans.xsd
            http://www.springframework.org/schema/tx
      	   http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
            http://www.springframework.org/schema/context
 		   http://www.springframework.org/schema/context/spring-context-3.0.xsd
            http://www.springframework.org/schema/cache
-           http://www.springframework.org/schema/cache/spring-cache.xsd">
+           http://www.springframework.org/schema/cache/spring-cache.xsd
+            http://mybatis.org/schema/mybatis-spring 
+  			http://mybatis.org/schema/mybatis-spring.xsd">
 
 	<bean id="propertyConfigurer"
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
@@ -35,6 +39,8 @@
 		<property name="dataSource" ref="dataSource" />
 		<property name="mapperLocations" value="classpath*:mybatis/mapper/letsbuild/*.xml" />
 	</bean>
+	<!-- 扫描Mapper,需要添加mybatis前缀绑定 -->
+	<mybatis:scan base-package="com.letsbuild.dao.mapper.custom" />
 
 	<!-- 配置SqlSessionTemplate -->
 	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
@@ -49,40 +55,36 @@
 	<!-- 使用annotation注解方式配置事务 -->
 	<tx:annotation-driven transaction-manager="transactionManager" />
 
-	<!--AOP 事务配置 
-	<tx:advice id="txAdvice" transaction-manager="transactionManager">
-		<tx:attributes>
-			<tx:method name="save*" propagation="REQUIRED" />
-			<tx:method name="add*" propagation="REQUIRED" />
-			<tx:method name="insert*" propagation="REQUIRED" />
-			<tx:method name="update*" propagation="REQUIRED" />
-			<tx:method name="del*" propagation="REQUIRED" />
-			<tx:method name="*" />
-		</tx:attributes>
-	</tx:advice>
--->
+	<!--AOP 事务配置 <tx:advice id="txAdvice" transaction-manager="transactionManager"> 
+		<tx:attributes> <tx:method name="save*" propagation="REQUIRED" /> <tx:method 
+		name="add*" propagation="REQUIRED" /> <tx:method name="insert*" propagation="REQUIRED" 
+		/> <tx:method name="update*" propagation="REQUIRED" /> <tx:method name="del*" 
+		propagation="REQUIRED" /> <tx:method name="*" /> </tx:attributes> </tx:advice> -->
 	<!-- 启动注解扫描 -->
 	<context:annotation-config />
 	<!-- 设定注解扫描基础包(不扫web相关) -->
-	<context:component-scan base-package="com.letsbuild" >
-		<context:exclude-filter  type="regex" expression="com.letsbuild.controller.*"/>
+	<context:component-scan base-package="com.letsbuild">
+		<context:exclude-filter type="regex"
+			expression="com.letsbuild.controller.*" />
 	</context:component-scan>
-	
-	
-	<cache:annotation-driven/>
 
-    <bean id="cacheManager" class="org.springframework.cache.support.SimpleCacheManager">
-        <property name="caches">
-            <set>
-            	<!-- 缓存区key必须唯一 -->
-                <bean class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean">
-                    <property name="name" value="sysMenuCache"/>
-                </bean>
-                <bean class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean">
-                    <property name="name" value="sysLabelCache"/>
-                </bean>
-            </set>
-        </property>
-    </bean>
+
+	<!-- Spring 缓存区配置 -->
+	<cache:annotation-driven />
+	<bean id="cacheManager" class="org.springframework.cache.support.SimpleCacheManager">
+		<property name="caches">
+			<set>
+				<!-- 缓存区key必须唯一 -->
+				<bean
+					class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean">
+					<property name="name" value="sysMenuCache" />
+				</bean>
+				<bean
+					class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean">
+					<property name="name" value="sysLabelCache" />
+				</bean>
+			</set>
+		</property>
+	</bean>
 
 </beans>  

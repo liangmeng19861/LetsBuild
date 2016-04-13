@@ -8,6 +8,7 @@ import com.letsbuild.base.exception.BusinessException;
 import com.letsbuild.base.util.BeanUtil;
 import com.letsbuild.base.util.DateUtil;
 import com.letsbuild.base.util.BeanUtil.Prop;
+import com.letsbuild.base.util.SeqUtil;
 import com.letsbuild.business.interfaces.IAdvpayBusiSV;
 import com.letsbuild.constants.DbConstants;
 import com.letsbuild.constants.ExceptCodeConstants;
@@ -32,7 +33,7 @@ public class AdvpayBusiSVImpl implements IAdvpayBusiSV {
                 new Prop("contactTel"), new Prop("amount"), new Prop("planRefundTime"),
                 new Prop("accountNo"), new Prop("accountName"), new Prop("openBank") };
         BeanUtil.copySelectProperties(vo, bo, props);
-        bo.setId(1l);// FIXME 序列怎么弄
+        bo.setId(SeqUtil.getNewAdvpayId());
         bo.setCreateTime(DateUtil.getSysDate());
         bo.setStatus(DbConstants.OrdAdvpay.Status.APPLY);
         bo.setStatusTime(DateUtil.getSysDate());

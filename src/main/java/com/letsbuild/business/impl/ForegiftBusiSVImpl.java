@@ -8,6 +8,7 @@ import com.letsbuild.base.exception.BusinessException;
 import com.letsbuild.base.util.BeanUtil;
 import com.letsbuild.base.util.DateUtil;
 import com.letsbuild.base.util.BeanUtil.Prop;
+import com.letsbuild.base.util.SeqUtil;
 import com.letsbuild.business.interfaces.IForegiftBusiSV;
 import com.letsbuild.constants.DbConstants;
 import com.letsbuild.constants.ExceptCodeConstants;
@@ -31,7 +32,7 @@ public class ForegiftBusiSVImpl implements IForegiftBusiSV {
                 new Prop("merchant"), new Prop("address"), new Prop("contactName"),
                 new Prop("contactTel"), new Prop("amount"), new Prop("planRefundTime") };
         BeanUtil.copySelectProperties(vo, bo, props);
-        bo.setId(1l);// FIXME 序列怎么弄
+        bo.setId(SeqUtil.getNewForegiftId());
         bo.setCreateTime(DateUtil.getSysDate());
         bo.setStatus(DbConstants.OrdForegift.Status.APPLY);
         bo.setStatusTime(DateUtil.getSysDate());

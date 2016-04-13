@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.letsbuild.dao.mapper.custom.CustomMapper;
 import com.letsbuild.dao.mapper.interfaces.OrdAdvpayMapper;
 import com.letsbuild.dao.mapper.interfaces.OrdForegiftMapper;
 import com.letsbuild.dao.mapper.interfaces.OrdOrderMapper;
@@ -72,6 +73,10 @@ public class MapperFactory {
 
 	public static SysUserRoleMapper getSysUserRoleMapper() {
 		return sqlSessionTemplate.getMapper(SysUserRoleMapper.class);
+	}
+	
+	public static CustomMapper getCustomMapper(){
+	    return sqlSessionTemplate.getMapper(CustomMapper.class);
 	}
 
 }
