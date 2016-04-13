@@ -56,7 +56,7 @@ public class OrderBusiSVImpl implements IOrderBusiSV {
         if (order == null) {
             throw new BusinessException(ExceptCodeConstants.NO_DATA, "订单不存在");
         }
-        if (order.getProjectLeader() != vo.getProjectLeader()) {
+        if (!order.getProjectLeader().equals(vo.getProjectLeader())) {
             throw new BusinessException(ExceptCodeConstants.NO_PERMISSION, "用户不能操作该订单");
         }
         if (!DbConstants.OrdOrder.Status.RECEIVE.equals(order.getStatus())) {
@@ -78,7 +78,7 @@ public class OrderBusiSVImpl implements IOrderBusiSV {
         if (order == null) {
             throw new BusinessException(ExceptCodeConstants.NO_DATA, "订单不存在");
         }
-        if (order.getProjectLeader() != vo.getProjectLeader()) {
+        if (!order.getProjectLeader().equals(vo.getProjectLeader())) {
             throw new BusinessException(ExceptCodeConstants.NO_PERMISSION, "用户不能操作该订单");
         }
         if (!DbConstants.OrdOrder.Status.QUOTES.equals(order.getStatus())) {
@@ -112,7 +112,7 @@ public class OrderBusiSVImpl implements IOrderBusiSV {
         if (order == null) {
             throw new BusinessException(ExceptCodeConstants.NO_DATA, "订单不存在");
         }
-        if (order.getProjectLeader() != vo.getProjectLeader()) {
+        if (!order.getProjectLeader().equals(vo.getProjectLeader())) {
             throw new BusinessException(ExceptCodeConstants.NO_PERMISSION, "用户不能操作该订单");
         }
         if (!DbConstants.OrdOrder.Status.SUBMIT.equals(order.getStatus())) {

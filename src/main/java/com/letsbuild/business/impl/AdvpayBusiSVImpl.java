@@ -67,7 +67,7 @@ public class AdvpayBusiSVImpl implements IAdvpayBusiSV {
         if (advpay == null) {
             throw new BusinessException(ExceptCodeConstants.NO_DATA, "垫付不存在");
         }
-        if (advpay.getPayUser() != vo.getPayUser()) {
+        if (!advpay.getPayUser().equals(vo.getPayUser())) {
             throw new BusinessException(ExceptCodeConstants.ORDER_STATE, "用户不能操作该垫付");
         }
         if (!DbConstants.OrdAdvpay.Status.PAY.equals(advpay.getStatus())) {

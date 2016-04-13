@@ -64,7 +64,7 @@ public class ForegiftBusiSVImpl implements IForegiftBusiSV {
         if (foregift == null) {
             throw new BusinessException(ExceptCodeConstants.NO_DATA, "押金不存在");
         }
-        if (foregift.getPayUser() != vo.getPayUser()) {
+        if (!foregift.getPayUser().equals(vo.getPayUser())) {
             throw new BusinessException(ExceptCodeConstants.ORDER_STATE, "用户不能操作该押金");
         }
         if (!DbConstants.OrdForegift.Status.PAY.equals(foregift.getStatus())) {

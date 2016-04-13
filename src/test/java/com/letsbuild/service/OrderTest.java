@@ -43,7 +43,8 @@ public class OrderTest extends TestCase {
 	@Test
 	public void testQuote(){
 	    OrderVo order = new OrderVo();
-		order.setId(1l);
+	    order.setProjectLeader(1203l);
+		order.setId(2l);
 		order.setQuotesAmount(1000d);
 		orderBusiSV.quoteOrder(order);
 	}
