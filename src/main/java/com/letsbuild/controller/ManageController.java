@@ -40,7 +40,7 @@ public class ManageController extends BaseController {
 	
 	@RequestMapping(value="/menulist")
 	public void queryMenu(HttpServletRequest request, HttpServletResponse response){
-		List<SysMenu> menuList = iSysMenuSV.querySysMenu(new ArrayList<Long>());
-		responseSuccess(response,"菜单加载完毕",JSON.toJSONString(menuList));
+		//List<SysMenu> menuList = iSysMenuSV.querySysMenu(new ArrayList<Long>());
+		//responseSuccess(response,"菜单加载完毕",JSON.toJSONString(menuList));
 	}
 }
