@@ -1,0 +1,79 @@
+.query_list_main{ width:100%; float:left; background:#fff;}
+.query_list_cnt{width:100%; float:left; background:#fff; margin-top:15px;}
+/**查询**/
+.query{ width:100%; float: left; background:url(../images/zy_cx.png) no-repeat; height:auto; padding-bottom:20px; padding-top:10px;}
+.query_nones_bj{ background:none;}
+.query_nones{ width:100%; float:left;}
+.query_nones .query_qeint{ width:100%;}
+.query_nones .LIST{ width:98%;}
+.query_nones .query_nones{ width:100%;}
+.query_nones .query_nones{ width:100%;}
+.query_nones ul{ float:left; width:100%; margin-bottom:0; }
+.query_nones ul li{ float:left; line-height:30px; margin-top:10px;position:relative;}
+.query_nones ul li p{ float:left; line-height:30px; margin-top:4px; margin-right:6px;}
+.query_nones ul .field{ width:200px; text-align:right; font-size:14px; color:#666;}
+.query_nones ul .a_color{ width:80%; float:left;}
+.query_nones ul .a_color p{ float: left; margin-right:10px;}
+.query_nones ul .a_color p a{ padding:0 20px; height:30px; background:#fff; border:1px solid #ccc; float:left; color:#666;}
+.query_nones ul .a_color p a:hover{ padding:0 20px; height:30px; background:#2bbfbd; border:1px solid #2bbfbd;float:left; color:#fff; text-decoration:none;}
+.query_nones ul .a_color p .selected{ padding:0 20px; height:30px; background:#2bbfbd; border:1px solid #2bbfbd;  float:left; color:#fff;}
+.query_nones ul .fangd a{ background:#2bbfbd; padding:0px 8px; float:left; margin-left:10px; margin-top:1px;}
+.query_nones ul .fangd a:hover{ background:#c00000;  color:#fffefe;}
+.query_duan{ width:100%; float:left; position:relative;}
+.query_duan ul .new_duan_xinz{margin-right:6px;}
+.query_duan ul .new_duan_xinz a{ color:#FFFFFF; padding:0 20px; height:30px; background:#2bbfbd; float:right; line-height:30px;margin-right:6px;margin-top:12px;}
+.query_duan ul .new_span {  height:30px; float:left; line-height:30px;margin-bottom:10px;margin-right:12px;font-size:18px;}
+.shenq{ width:100%; float:left; margin-top:10px; padding-left:20px; font-size:16px; color:#666; line-height:25px;border-top:1px dashed #ccc; padding-top:8px;}
+.shenq_noborder{border-top: none; }
+.query_last{ float:left;  margin-top:10px;}
+.query_last ul{ float:left; width:100%;}
+.query_last ul li{ float:left;margin-right: 6px;}
+.query_last ul li p{ float:left;}
+.query_last ul li .new_jia{ padding:0px 8px; height:30px;background:#009896;float:left; line-height:30px;}
+.query_last ul li .new_jia i{ color:#fff; }
+.query_last ul .new_xinz a{ color:#fff; padding:0 20px; height:30px; background:#2bbfbd; float:left; line-height:30px;}
+.query_last ul .new_xinz a:hover{ background:#009896; color:#fffefe;}
+.query_nones ul .query_btn { float:left; }
+.query_nones ul .query_btn span{height:40px; float:left; text-align:right; cursor:pointer;  font-size:16px;padding: 0 40px  0 40px; background:#2bbfbd; line-height:40px; color:#fff; }
+.query_nones ul .query_btn span:hover{background:#009896; text-decoration:none; color:#fffefe;}
+.query_nones ul .query_btn a{ height:40px; float:left; text-align:right;  font-size:16px;padding: 0 40px  0 40px; background:#2bbfbd; line-height:40px; color:#fff; }
+.query_nones ul .query_btn a:hover{ background:#009896; text-decoration:none; color:#fff;}
+.query_nones ul .query_btn a.query_btna{ height:40px; float:left; text-align:right; font-size:16px; padding: 0 40px  0 40px; background:#fff; border:1px solid #2bbfbd; line-height:40px; color:#2bbfbd; margin-right:10px; }
+.query_nones ul .query_btn a.query_btna:hover{ background:#009896; color:#fff; }
+.this{ width:100%; float:left;}
+.query_nones ul .query_btn_x a{ height:30px; float:left; text-align:right; padding: 0 20px  0 20px; background:#2bbfbd; line-height:30px; color:#fff; margin-left:20px; }
+.query_nones ul li .icon-calendar{ position:absolute; top:8px; left:130px; font-size:14px; color:#ccc; z-index:99;}
+.query_nones ul .ri_x{ margin:0 4px 0 4px;}
+.query_nones ul .qieh_yans{margin-left:100px; width:100%; margin-top:10px;}
+.query_nones ul .qieh_yans1{margin-left:80px; width:100%; margin-top:10px;}
+.query_input{ width:150px; height:30px; background:#fff; border:1px solid #d6d8db; }
+.query_input:hover{ border:1px solid #2bbfbd;}
+.query_inputa{ width:350px; height:30px; background:#fff; border:1px solid #d6d8db; }
+.query_inputa:hover{ border:1px solid #2bbfbd;}
+.query_inputb{ width:300px; height:30px; background:#fff; font-size:14px; border:1px solid #d6d8db; }
+.query_inputb:hover{ border:1px solid #2bbfbd;}
+.query_input_c{width:250px; height:30px; background:#fff; border:1px solid #d6d8db; }
+.query_selecta{ width:250px; height:32px; background:#fff; border:1px solid #d6d8db; }
+.query_selectb{ width:300px; height:32px; float:left;background:#fff; border:1px solid #d6d8db; }
+.query_select{ width:150px; height:32px; background:#fff; border:1px solid #d6d8db; }
+.list table td span.quxiao a{ background:#d9d9db; padding:5px 10px;margin-left:4px;}
+.list table td span.chuli a{ background:#2bbfbd; padding:5px 10px; color:#fff;margin-left:4px;}
+.list table td span.chuli :hover{ background:#ce0202;}
+.list table td span.quxiao a:hover{ background:#e6e6e6;}
+.list{ width:98%; margin-left:1%; float:left; margin-top:20px;}
+.list_nonr{ margin-top:0;} 
+.list table{ background:#fff;}
+.list table  tr td{border:1px solid #d6d8db; font-size:12px;  height:40px; text-align:center; color:#555;}
+.list table  tr:hover{ background:#fffbf1;}
+.list table .tr_bj{ background:#f5f5f5;}
+.list table .tr_bj:hover{ background:#f5f5f5;}
+.list table  tr td a{ padding:8px 6px; text-align:center; font-size:12px; border-radius:5px; color:#666;}
+.list table  tr td a img{ margin-right:10px;}
+.list table tr .pos-tanc{position:relative;}
+.centerx{ float:left; margin:0 5px; margin-top:12px; font-size:18px; color:#999;}
+.wih50{ width:50%; float:left;}
+.theone{ position:absolute; right:10px;}
+.Paging{ width:100%; float:left; text-align:center;}
+.Paging ul li a{ color:#555; background:#fcfcfc;}
+.Paging ul li a:hover{ background:#2bbfbd; color:#fff; border:1px solid #2bbfbd;}
+.Paging ul .cutt a{background:#2bbfbd; color:#fff; border:1px solid #2bbfbd;}
