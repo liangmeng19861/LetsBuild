@@ -16,21 +16,15 @@ public interface SysMenuMapper {
 
     int insertSelective(SysMenu record);
 
-    List<SysMenu> selectByExampleWithBLOBs(SysMenuCriteria example);
-
     List<SysMenu> selectByExample(SysMenuCriteria example);
 
     SysMenu selectByPrimaryKey(Long id);
 
     int updateByExampleSelective(@Param("record") SysMenu record, @Param("example") SysMenuCriteria example);
 
-    int updateByExampleWithBLOBs(@Param("record") SysMenu record, @Param("example") SysMenuCriteria example);
-
     int updateByExample(@Param("record") SysMenu record, @Param("example") SysMenuCriteria example);
 
     int updateByPrimaryKeySelective(SysMenu record);
-
-    int updateByPrimaryKeyWithBLOBs(SysMenu record);
 
     int updateByPrimaryKey(SysMenu record);
 }

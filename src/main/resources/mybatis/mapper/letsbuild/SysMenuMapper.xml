@@ -3,12 +3,10 @@
 <mapper namespace="com.letsbuild.dao.mapper.interfaces.SysMenuMapper" >
   <resultMap id="BaseResultMap" type="com.letsbuild.dao.mapper.bo.SysMenu" >
     <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="url" property="url" jdbcType="VARCHAR" />
     <result column="pmenu" property="pmenu" jdbcType="BIGINT" />
     <result column="comment" property="comment" jdbcType="VARCHAR" />
-  </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.letsbuild.dao.mapper.bo.SysMenu" extends="BaseResultMap" >
-    <result column="name" property="name" jdbcType="VARBINARY" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -69,27 +67,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, url, pmenu, comment
+    id, name, url, pmenu, comment
   </sql>
-  <sql id="Blob_Column_List" >
-    name
-  </sql>
-  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.letsbuild.dao.mapper.bo.SysMenuCriteria" >
-    select
-    <if test="distinct" >
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from sys_menu
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null" >
-      order by ${orderByClause}
-    </if>
-  </select>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.letsbuild.dao.mapper.bo.SysMenuCriteria" >
     select
     <if test="distinct" >
@@ -107,11 +86,9 @@
       limit #{limitStart} , #{limitEnd}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="Long" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="Long" >
     select 
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
     from sys_menu
     where id = #{id,jdbcType=BIGINT}
   </select>
@@ -126,16 +103,19 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.letsbuild.dao.mapper.bo.SysMenu" >
-    insert into sys_menu (id, url, pmenu, 
-      comment, name)
-    values (#{id,jdbcType=BIGINT}, #{url,jdbcType=VARCHAR}, #{pmenu,jdbcType=BIGINT}, 
-      #{comment,jdbcType=VARCHAR}, #{name,jdbcType=VARBINARY})
+    insert into sys_menu (id, name, url, 
+      pmenu, comment)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
+      #{pmenu,jdbcType=BIGINT}, #{comment,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.letsbuild.dao.mapper.bo.SysMenu" >
     insert into sys_menu
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
+      </if>
+      <if test="name != null" >
+        name,
       </if>
       <if test="url != null" >
         url,
@@ -146,13 +126,13 @@
       <if test="comment != null" >
         comment,
       </if>
-      <if test="name != null" >
-        name,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
       </if>
       <if test="url != null" >
         #{url,jdbcType=VARCHAR},
@@ -162,9 +142,6 @@
       </if>
       <if test="comment != null" >
         #{comment,jdbcType=VARCHAR},
-      </if>
-      <if test="name != null" >
-        #{name,jdbcType=VARBINARY},
       </if>
     </trim>
   </insert>
@@ -180,6 +157,9 @@
       <if test="record.id != null" >
         id = #{record.id,jdbcType=BIGINT},
       </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
       <if test="record.url != null" >
         url = #{record.url,jdbcType=VARCHAR},
       </if>
@@ -189,21 +169,7 @@
       <if test="record.comment != null" >
         comment = #{record.comment,jdbcType=VARCHAR},
       </if>
-      <if test="record.name != null" >
-        name = #{record.name,jdbcType=VARBINARY},
-      </if>
     </set>
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExampleWithBLOBs" parameterType="map" >
-    update sys_menu
-    set id = #{record.id,jdbcType=BIGINT},
-      url = #{record.url,jdbcType=VARCHAR},
-      pmenu = #{record.pmenu,jdbcType=BIGINT},
-      comment = #{record.comment,jdbcType=VARCHAR},
-      name = #{record.name,jdbcType=VARBINARY}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -211,6 +177,7 @@
   <update id="updateByExample" parameterType="map" >
     update sys_menu
     set id = #{record.id,jdbcType=BIGINT},
+      name = #{record.name,jdbcType=VARCHAR},
       url = #{record.url,jdbcType=VARCHAR},
       pmenu = #{record.pmenu,jdbcType=BIGINT},
       comment = #{record.comment,jdbcType=VARCHAR}
@@ -221,6 +188,9 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.letsbuild.dao.mapper.bo.SysMenu" >
     update sys_menu
     <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
       <if test="url != null" >
         url = #{url,jdbcType=VARCHAR},
       </if>
@@ -230,23 +200,13 @@
       <if test="comment != null" >
         comment = #{comment,jdbcType=VARCHAR},
       </if>
-      <if test="name != null" >
-        name = #{name,jdbcType=VARBINARY},
-      </if>
     </set>
-    where id = #{id,jdbcType=BIGINT}
-  </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.letsbuild.dao.mapper.bo.SysMenu" >
-    update sys_menu
-    set url = #{url,jdbcType=VARCHAR},
-      pmenu = #{pmenu,jdbcType=BIGINT},
-      comment = #{comment,jdbcType=VARCHAR},
-      name = #{name,jdbcType=VARBINARY}
     where id = #{id,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.letsbuild.dao.mapper.bo.SysMenu" >
     update sys_menu
-    set url = #{url,jdbcType=VARCHAR},
+    set name = #{name,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
       pmenu = #{pmenu,jdbcType=BIGINT},
       comment = #{comment,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}

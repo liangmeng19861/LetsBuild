@@ -3,6 +3,8 @@ package com.letsbuild.dao.mapper.bo;
 public class SysRole {
     private Long id;
 
+    private String authority;
+
     private String comment;
 
     private Byte[] name;
@@ -13,6 +15,14 @@ public class SysRole {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getAuthority() {
+        return authority;
+    }
+
+    public void setAuthority(String authority) {
+        this.authority = authority == null ? null : authority.trim();
     }
 
     public String getComment() {

@@ -3,6 +3,7 @@
 <mapper namespace="com.letsbuild.dao.mapper.interfaces.SysRoleMapper" >
   <resultMap id="BaseResultMap" type="com.letsbuild.dao.mapper.bo.SysRole" >
     <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="authority" property="authority" jdbcType="VARCHAR" />
     <result column="comment" property="comment" jdbcType="VARCHAR" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.letsbuild.dao.mapper.bo.SysRole" extends="BaseResultMap" >
@@ -67,7 +68,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, comment
+    id, authority, comment
   </sql>
   <sql id="Blob_Column_List" >
     name
@@ -124,16 +125,19 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.letsbuild.dao.mapper.bo.SysRole" >
-    insert into sys_role (id, comment, name
-      )
-    values (#{id,jdbcType=BIGINT}, #{comment,jdbcType=VARCHAR}, #{name,jdbcType=VARBINARY}
-      )
+    insert into sys_role (id, authority, comment, 
+      name)
+    values (#{id,jdbcType=BIGINT}, #{authority,jdbcType=VARCHAR}, #{comment,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARBINARY})
   </insert>
   <insert id="insertSelective" parameterType="com.letsbuild.dao.mapper.bo.SysRole" >
     insert into sys_role
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
+      </if>
+      <if test="authority != null" >
+        authority,
       </if>
       <if test="comment != null" >
         comment,
@@ -145,6 +149,9 @@
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         #{id,jdbcType=BIGINT},
+      </if>
+      <if test="authority != null" >
+        #{authority,jdbcType=VARCHAR},
       </if>
       <if test="comment != null" >
         #{comment,jdbcType=VARCHAR},
@@ -166,6 +173,9 @@
       <if test="record.id != null" >
         id = #{record.id,jdbcType=BIGINT},
       </if>
+      <if test="record.authority != null" >
+        authority = #{record.authority,jdbcType=VARCHAR},
+      </if>
       <if test="record.comment != null" >
         comment = #{record.comment,jdbcType=VARCHAR},
       </if>
@@ -180,6 +190,7 @@
   <update id="updateByExampleWithBLOBs" parameterType="map" >
     update sys_role
     set id = #{record.id,jdbcType=BIGINT},
+      authority = #{record.authority,jdbcType=VARCHAR},
       comment = #{record.comment,jdbcType=VARCHAR},
       name = #{record.name,jdbcType=VARBINARY}
     <if test="_parameter != null" >
@@ -189,6 +200,7 @@
   <update id="updateByExample" parameterType="map" >
     update sys_role
     set id = #{record.id,jdbcType=BIGINT},
+      authority = #{record.authority,jdbcType=VARCHAR},
       comment = #{record.comment,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -197,6 +209,9 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.letsbuild.dao.mapper.bo.SysRole" >
     update sys_role
     <set >
+      <if test="authority != null" >
+        authority = #{authority,jdbcType=VARCHAR},
+      </if>
       <if test="comment != null" >
         comment = #{comment,jdbcType=VARCHAR},
       </if>
@@ -208,13 +223,15 @@
   </update>
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.letsbuild.dao.mapper.bo.SysRole" >
     update sys_role
-    set comment = #{comment,jdbcType=VARCHAR},
+    set authority = #{authority,jdbcType=VARCHAR},
+      comment = #{comment,jdbcType=VARCHAR},
       name = #{name,jdbcType=VARBINARY}
     where id = #{id,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.letsbuild.dao.mapper.bo.SysRole" >
     update sys_role
-    set comment = #{comment,jdbcType=VARCHAR}
+    set authority = #{authority,jdbcType=VARCHAR},
+      comment = #{comment,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

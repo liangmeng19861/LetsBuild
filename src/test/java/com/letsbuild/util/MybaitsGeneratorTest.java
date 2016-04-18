@@ -49,7 +49,7 @@ public class MybaitsGeneratorTest extends TestCase {
 	public void testMybaitsGenerator() {
 
 		/**生成代码表名**/
-	    String[] tableNames = {"ord_advpay"};
+	    String[] tableNames = {"sys_menu"};
 		//String[] tableNames = { "ord_advpay","ord_foregift","ord_order","ord_stage","sys_label","sys_menu","sys_role","sys_role_menu","sys_user","sys_user_role" };
 
 		

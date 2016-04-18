@@ -1,6 +1,5 @@
 package com.letsbuild.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import junit.framework.Assert;
@@ -15,7 +14,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.alibaba.fastjson.JSON;
 import com.letsbuild.cache.CacheFactory;
-import com.letsbuild.dao.mapper.bo.SysMenu;
+import com.letsbuild.dao.mapper.bo.SysLabel;
+import com.letsbuild.vo.MenuVo;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({ "/application.xml" })
@@ -25,24 +25,28 @@ public class CacheSericeTest extends TestCase{
     
     @Test
     public void testCache(){
-        List<Long> ids = new ArrayList<Long>();
-        ids.add(1l);
-        List<SysMenu> menu1 = CacheFactory.getMenu(ids);  
+        List<MenuVo> menu1 = CacheFactory.getMenu(1l);  
         logger.info(JSON.toJSONString(menu1));
-        List<SysMenu> menu2 = CacheFactory.getMenu(ids);  
+        List<MenuVo> menu2 = CacheFactory.getMenu(1l);  
         logger.info(JSON.toJSONString(menu2));
-        List<SysMenu> menu3 = CacheFactory.getMenu(ids);  
+        List<MenuVo> menu3 = CacheFactory.getMenu(1l);  
         logger.info(JSON.toJSONString(menu3));
-        List<SysMenu> menu4 = CacheFactory.getMenu(ids);  
+        List<MenuVo> menu4 = CacheFactory.getMenu(1l);  
         logger.info(JSON.toJSONString(menu4));
-        List<SysMenu> menu5 = CacheFactory.getMenu(ids);  
+        List<MenuVo> menu5 = CacheFactory.getMenu(1l);  
         logger.info(JSON.toJSONString(menu5));
-        List<SysMenu> menu6 = CacheFactory.getMenu(ids);  
+        List<MenuVo> menu6 = CacheFactory.getMenu(1l);  
         logger.info(JSON.toJSONString(menu6));
         Assert.assertEquals(menu1.get(0), menu2.get(0));
         Assert.assertEquals(menu2.get(0), menu3.get(0));
         Assert.assertEquals(menu3.get(0), menu4.get(0));
         Assert.assertEquals(menu4.get(0), menu5.get(0));
         Assert.assertEquals(menu5.get(0), menu6.get(0));
+    }
+    
+    @Test
+    public void testLabel(){
+        List<SysLabel> labelList = CacheFactory.getLabel("ORD_ORDER", "BRAND_CODE");
+        logger.info(JSON.toJSONString(labelList));
     }
 }

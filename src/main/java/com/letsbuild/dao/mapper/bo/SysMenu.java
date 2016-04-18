@@ -3,13 +3,13 @@ package com.letsbuild.dao.mapper.bo;
 public class SysMenu {
     private Long id;
 
+    private String name;
+
     private String url;
 
     private Long pmenu;
 
     private String comment;
-
-    private Byte[] name;
 
     public Long getId() {
         return id;
@@ -17,6 +17,14 @@ public class SysMenu {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name == null ? null : name.trim();
     }
 
     public String getUrl() {
@@ -41,13 +49,5 @@ public class SysMenu {
 
     public void setComment(String comment) {
         this.comment = comment == null ? null : comment.trim();
-    }
-
-    public Byte[] getName() {
-        return name;
-    }
-
-    public void setName(Byte[] name) {
-        this.name = name;
     }
 }

@@ -22,6 +22,27 @@ public class OrderController extends BaseController {
 
     @Autowired
     private IOrderBusiSV orderBusiSV;
+    
+    @RequestMapping
+    public String order(HttpServletRequest request, HttpServletResponse response){
+        return "order/query";
+    }
+    
+    @RequestMapping(value="query")
+    public String query(HttpServletRequest request, HttpServletResponse response){
+        String brandCode = request.getParameter("brandCode");
+        String projectCode = request.getParameter("projectCode");
+        String provinceCode = request.getParameter("province_code");
+        String cityCode = request.getParameter("cityCode");
+        String receiveTimeStart = request.getParameter("receiveTimeStart"); 
+        String receiveTimeEnd = request.getParameter("receiveTimeEnd");
+        return "order/list";
+    }
+    
+    @RequestMapping(value="/edit")
+    public String edit(HttpServletRequest request, HttpServletResponse response, OrderVo order){
+        return "order/edit";
+    }
 
     /**
      * 接单立项提交
