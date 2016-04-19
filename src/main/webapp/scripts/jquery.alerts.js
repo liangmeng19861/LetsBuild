@@ -86,7 +86,8 @@
 			if( $.alerts.dialogClass ) $("#popup_container").addClass($.alerts.dialogClass);
 			
 			// IE6 Fix
-			var pos = ($.browser.msie && parseInt($.browser.version) <= 6 ) ? 'absolute' : 'fixed'; 
+			var pos = (!$.support.leadingWhitespace) ? 'absolute' : 'fixed'; 
+			//var pos = ($.browser.msie && parseInt($.browser.version) <= 6 ) ? 'absolute' : 'fixed'; 
 			
 			$("#popup_container").css({
 				position: pos,
@@ -204,7 +205,10 @@
 			if( left < 0 ) left = 0;
 			
 			// IE6 fix
-			if( $.browser.msie && parseInt($.browser.version) <= 6 ) top = top + $(window).scrollTop();
+			if (!$.support.leadingWhitespace) {
+				top = top + $(window).scrollTop();
+			}
+			//if( $.browser.msie && parseInt($.browser.version) <= 6 ) 
 			
 			$("#popup_container").css({
 				top: top + 'px',
