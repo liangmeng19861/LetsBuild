@@ -20,7 +20,7 @@ public final class DbConstants {
             public static String QUOTES = "2";
 
             /**
-             * 订单报价
+             * 下单
              */
             public static String SUBMIT = "3";
 

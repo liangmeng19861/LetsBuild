@@ -1,7 +1,15 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.letsbuild.com/tag" prefix="lb" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%
+    String basepath = request.getContextPath();
+			request.setAttribute("_base", basepath);
 
+			response.setHeader("Cache-Control", "no-cache");
+			response.setDateHeader("Expires", 0);
+			response.setHeader("Pragma", "No-cache");	
+%>
 <div class="list">
 	<!--列表区域-->
 	<table width="100%" border="0">
@@ -17,48 +25,29 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="" var="">
+			<c:forEach items="${ orderList}" var="order">
 				<tr valign="middle">
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td><img src="images/icon1.png"> 接单立项</td>
-					<td><a href="#">报价</a></td>
+					<td>${order.projectCode }</td>
+					<td>${order.merchant }</td>
+					<td>${order.brandCode }</td>
+					<td>${order.provinceCode }</td>
+					<td>${order.cityCode }</td>
+					<td><lb:label columnName="STATUS" tableName="ORD_ORDER" value="${order.status}" ></lb:label></td>
+					<td>
+						<c:choose>
+							<c:when test="${order.status == 1}"><a href="${_base}/order/quotes/${order.id}"><i class="icon-bar-chart"></i>报价</a></c:when>
+							<c:when test="${order.status == 2}"><a href="${_base}/order/submit/${order.id}"><i class="icon-wrench"></i>下单</a></c:when>
+							<c:when test="${order.status == 3}"><a href="${_base}/order/acceptance/${order.id}"><i class="icon-ok-circle"></i>验收</a></c:when>
+							<c:when test="${order.status == 4}"><a href="${_base}/order/invoice/${order.id}"><i class="icon-book"></i>开票</a></c:when>
+							<c:when test="${order.status == 5}"><a href="${_base}/order/income/${order.id}"><i class="icon-euro"></i>回款</a></c:when>
+							<c:when test="${order.status == 6}"><a href="${_base}/order/edit/${order.id}"><i class="icon-edit"></i>修改</a></c:when>
+						</c:choose>
+						
+					</td>
 	
 				</tr>
 			</c:forEach>
-			<tr valign="middle">
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td><img src="images/icon2.png"> 已报价</td>
-				<td><a href="#">下单制作</a></td>
-
-			</tr>
-			<tr valign="middle">
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td><img src="images/icon3.png"> 已验收</td>
-				<td><a href="#">申请开票</a></td>
-
-			</tr>
-			<tr valign="middle">
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td><img src="images/icon4.png"> 已制作</td>
-				<td><a href="#">验收</a></td>
-
-			</tr>
+			
 		</tbody>
 	</table>
 </div>

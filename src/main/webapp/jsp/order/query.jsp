@@ -54,7 +54,7 @@
 					type : "POST",
 					url : content_url,
 					modal : true,
-					showBusi : false,
+					showBusi : true,
 					data : param,
 					success : function(data) {
 						$(_this.settings.result).html(data);

@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.letsbuild.base.exception.BusinessException;
+import com.letsbuild.base.util.StringUtil;
 import com.letsbuild.constants.ExceptCodeConstants;
 import com.letsbuild.constants.SysConstants;
 import com.letsbuild.dao.mapper.bo.OrdOrder;
@@ -49,23 +50,27 @@ public class OrdOrderSVImpl implements IOrdOrderSV {
         if (order.getId() != null) {// = id
             criteria.andIdEqualTo(order.getId());
         }
-        if (order.getProjectCode() != null) {// like projectCode
+        if (!StringUtil.isBlank(order.getProjectCode())) {// like projectCode
             criteria.andProjectCodeLike(order.getProjectCode());
         }
-        if (order.getProvinceCode() != null) {// = provinceCode
+        if (!StringUtil.isBlank(order.getProvinceCode())) {// = provinceCode
             criteria.andProvinceCodeEqualTo(order.getProvinceCode());
         }
-        if (order.getCityCode() != null) { // = cityCode
+        if (!StringUtil.isBlank(order.getCityCode())) { // = cityCode
             criteria.andCityCodeEqualTo(order.getCityCode());
         }
-        if (order.getMerchant() != null) { // like merchant
+        if (!StringUtil.isBlank(order.getMerchant())) { // like merchant
             criteria.andMerchantLike(order.getMerchant());
         }
         // TODO more
 
         if (SysConstants.OrderQueryTimeType.RECEIVE_TIME.equals(timeType)) {
             // 接单时间
-            criteria.andReceiveTimeBetween(start, end);
+            if(start!=null){
+                criteria.andReceiveTimeGreaterThanOrEqualTo(start);
+            }if(end!=null){
+                criteria.andReceiveTimeLessThanOrEqualTo(end);
+            }
         }
 
         return MapperFactory.getOrdOrderMapper().selectByExample(example);

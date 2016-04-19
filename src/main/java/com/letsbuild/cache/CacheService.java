@@ -39,7 +39,7 @@ public class CacheService {
         return sysBusiSV.querySysLabel(table, column);
     }
 
-    @Cacheable(value = "sysLabelCache", key = "#table.concat(1).concat(#column).cancat(1).cancat(#value)")
+    @Cacheable(value = "sysLabelCache", key = "#table.concat(1).concat(#column).concat(1).concat(#value)")
     public SysLabel querySysLabel(String table, String column, String value)
             throws BusinessException {
         logger.info("字段枚举缓存中未找到[key={}1{}1{}],重新查询数据库", table, column, value);

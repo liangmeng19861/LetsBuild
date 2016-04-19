@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.letsbuild.com/tag" prefix="lb" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
@@ -9,11 +10,10 @@
 			response.setDateHeader("Expires", 0);
 			response.setHeader("Pragma", "No-cache");	
 %>
-<%@taglib prefix="lb" uri="http://www.letsbuild.com/tag" %>
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>Velo</title>
+<title>ADking订单系统</title>
 <meta name="description"
 	content="app, web app, responsive, responsive layout, admin, admin panel, admin dashboard, flat, flat ui, ui kit, AngularJS, ui route, charts, widgets, components" />
 <meta name="viewport"
@@ -24,7 +24,7 @@
 	type="text/css" />
 <link rel="stylesheet" href="${_base}/styles/frame.css" type="text/css" />
 <link rel="stylesheet" href="${_base}/styles/comp.css" type="text/css" />
-<script type="text/javascript" src="${_base}/scripts/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="${_base}/scripts/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="${_base}/scripts/jquery.alerts.js"></script>
 <script type="text/javascript"
 	src="${_base}/scripts/jquery.pageController.js"></script>

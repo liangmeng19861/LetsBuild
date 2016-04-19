@@ -13,10 +13,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.letsbuild.base.exception.BusinessException;
 import com.letsbuild.base.exception.SystemException;
 import com.letsbuild.base.util.CollectionUtil;
 import com.letsbuild.base.util.StringUtil;
 import com.letsbuild.business.interfaces.ISysBusiSV;
+import com.letsbuild.constants.ExceptCodeConstants;
 import com.letsbuild.constants.SysConstants;
 import com.letsbuild.dao.mapper.bo.SysRole;
 import com.letsbuild.dao.mapper.bo.SysUser;
@@ -39,14 +41,14 @@ public class MainController extends BaseController {
             String username = (String) request.getParameter("username");
             String password = (String) request.getParameter("password");
             if (StringUtil.isBlank(username) || StringUtil.isBlank(password)) {
-                throw new SystemException("登录名或密码为空");
+                throw new BusinessException(ExceptCodeConstants.LONIN_ERROR,"登录名或密码为空");
             }
             UserVo user = sysBusiSV.queryUser(username);
             if (user == null || !password.equals(user.getPassword())) {
-                throw new SystemException("登录名或密码错误");
+                throw new BusinessException(ExceptCodeConstants.LONIN_ERROR,"登录名或密码错误");
             }
             if (CollectionUtil.isEmpty(user.getRoles())) {
-                throw new SystemException("登录用户没有角色");
+                throw new BusinessException(ExceptCodeConstants.LONIN_ERROR,"登录用户没有角色");
             }
             List<SysRole> roleList = user.getRoles();
             StringBuffer authority = new StringBuffer();
@@ -73,16 +75,19 @@ public class MainController extends BaseController {
             request.getSession().setAttribute(SysConstants.SessionName.SESSION_NAME_ROLEIDS, roles);
             logger.info("登录成功");
             responseSuccess(response, "登录成功", null);
+        }catch (BusinessException e){
+            logger.info("登录失败:{}", e.getMessage());
+            responseFailed(response, e.getMessage(), null);
         } catch (Exception e) {
             logger.info("登录失败:{}", e.getMessage());
-            responseSuccess(response, "登录失败", null);
+            responseFailed(response, "系统繁忙", null);
         }
     }
     
     @RequestMapping(value = "/logout")
-    public String logout(HttpServletRequest request, HttpServletResponse response) {
+    public void logout(HttpServletRequest request, HttpServletResponse response) throws IOException {
         request.getSession().invalidate();
-        return "redirect："+request.getContextPath();
+        response.sendRedirect(request.getContextPath());
     }
 
     @RequestMapping(value = "/index")

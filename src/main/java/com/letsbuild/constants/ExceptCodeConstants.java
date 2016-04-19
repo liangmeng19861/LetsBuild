@@ -2,6 +2,7 @@ package com.letsbuild.constants;
 
 public class ExceptCodeConstants {
 	public static final String SYSTEM_ERROR = "0000"; 
+	public static final String LONIN_ERROR = "0001";
 	//DATA
 	public static final String NO_PARAM = "1000";
 	public static final String NO_DATA = "1001";

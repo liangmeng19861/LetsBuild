@@ -56,6 +56,9 @@ public class UserInterceptor extends HandlerInterceptorAdapter {
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response,
             Object handler, ModelAndView modelAndView) throws Exception {
+        if ("/login".equals(request.getServletPath()) || "/logout".equals(request.getServletPath())) {
+            return;
+        }
         // 用户名
         request.setAttribute("fullnasme", request.getSession().getAttribute("fullname"));
         // 用户菜单

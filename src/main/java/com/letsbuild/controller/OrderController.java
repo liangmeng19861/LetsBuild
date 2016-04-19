@@ -10,7 +10,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.letsbuild.base.exception.SystemException;
 import com.letsbuild.base.util.DateUtil;
@@ -27,13 +29,48 @@ public class OrderController extends BaseController {
 
     @Autowired
     private IOrderBusiSV orderBusiSV;
-
-    @RequestMapping
-    public String order(HttpServletRequest request, HttpServletResponse response) {
+    
+    /**
+     * 查询页面
+     * @param request
+     * @param response
+     * @return
+     */
+    @RequestMapping(method=RequestMethod.GET)
+    public String querypage(HttpServletRequest request, HttpServletResponse response) {
         return "order/query";
     }
+    /**
+     * 接单页面
+     * @param request
+     * @param response
+     * @return
+     */
+    @RequestMapping(value="/receive",method=RequestMethod.GET)
+    public String receivepage(HttpServletRequest request, HttpServletResponse response) {
+        return "order/receive";
+    }
 
-    @RequestMapping(value = "query")
+    /**
+     * 订单编辑页面
+     * @param request
+     * @param response
+     * @param opt
+     * @param id
+     * @return
+     */
+    @RequestMapping(value="/{opt}/{id}",method=RequestMethod.GET)
+    public String opt(HttpServletRequest request, HttpServletResponse response,@PathVariable String opt,@PathVariable Long id) {
+        return "order/"+opt;
+    }
+
+    /**
+     * 订单查询
+     * @param request
+     * @param response
+     * @return
+     */
+    @RequestMapping(value = "query",method=RequestMethod.POST)
     public String query(HttpServletRequest request, HttpServletResponse response) {
         String brandCode = request.getParameter("brandCode");
         String projectCode = request.getParameter("projectCode");
@@ -46,18 +83,15 @@ public class OrderController extends BaseController {
         Long projectLeader = (Long) request.getSession().getAttribute(
                 SysConstants.SessionName.SESSION_NAME_USERID);
         // 接单开始结束时间
-        Timestamp start = DateUtil.getTimestamp(receiveTimeStart, DateUtil.DATETIME_FORMAT);
-        Timestamp end = DateUtil.getTimestamp(receiveTimeEnd, DateUtil.DATETIME_FORMAT);
+        Timestamp start = StringUtil.isBlank(receiveTimeStart) ? null : DateUtil.getTimestamp(
+                receiveTimeStart, DateUtil.DATETIME_FORMAT);
+        Timestamp end = StringUtil.isBlank(receiveTimeEnd) ? null : DateUtil.getTimestamp(
+                receiveTimeEnd, DateUtil.DATETIME_FORMAT);
         List<OrderVo> voList = orderBusiSV.queryOrder(projectLeader, brandCode, projectCode,
                 provinceCode, cityCode, merchantName, start, end,
                 SysConstants.OrderQueryTimeType.RECEIVE_TIME);
         request.setAttribute("orderList", voList);
         return "order/list";
-    }
-
-    @RequestMapping(value = "/edit")
-    public String edit(HttpServletRequest request, HttpServletResponse response, OrderVo order) {
-        return "order/edit";
     }
 
     /**
@@ -67,7 +101,7 @@ public class OrderController extends BaseController {
      * @param response
      * @param order
      */
-    @RequestMapping(value = "/receive")
+    @RequestMapping(value = "/receive",method=RequestMethod.POST)
     public void receive(HttpServletRequest request, HttpServletResponse response, OrderVo order) {
 
         try {
@@ -117,7 +151,7 @@ public class OrderController extends BaseController {
      * @param response
      * @param order
      */
-    @RequestMapping(value = "/quote")
+    @RequestMapping(value = "/quote",method=RequestMethod.POST)
     public void quote(HttpServletRequest request, HttpServletResponse response, OrderVo order) {
 
         try {

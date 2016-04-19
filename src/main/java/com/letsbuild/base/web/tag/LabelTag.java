@@ -53,7 +53,7 @@ public class LabelTag extends TagSupport {
 
     @Override
     public int doEndTag() throws JspException {
-        String dict = CacheFactory.getLabel(this.tableName, this.columnName, this.value);
+        String dict = CacheFactory.getLabel(this.tableName, this.columnName, String.valueOf(this.value));
         JspWriter out = pageContext.getOut();
         try {
             out.write(dict);
