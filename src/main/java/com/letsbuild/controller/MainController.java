@@ -17,6 +17,7 @@ import com.letsbuild.base.exception.SystemException;
 import com.letsbuild.base.util.CollectionUtil;
 import com.letsbuild.base.util.StringUtil;
 import com.letsbuild.business.interfaces.ISysBusiSV;
+import com.letsbuild.constants.SysConstants;
 import com.letsbuild.dao.mapper.bo.SysRole;
 import com.letsbuild.dao.mapper.bo.SysUser;
 import com.letsbuild.service.interfaces.ISysRoleSV;
@@ -65,11 +66,11 @@ public class MainController extends BaseController {
                     roles[i] = role.getId();
                 }
             }
-            request.getSession().setAttribute("userid", user.getId());
-            request.getSession().setAttribute("username", user.getLoginname());
-            request.getSession().setAttribute("fullname", user.getName());
-            request.getSession().setAttribute("authority", authority.toString());
-            request.getSession().setAttribute("roleids", roles);
+            request.getSession().setAttribute(SysConstants.SessionName.SESSION_NAME_USERID, user.getId());
+            request.getSession().setAttribute(SysConstants.SessionName.SESSION_NAME_USERNAME, user.getLoginname());
+            request.getSession().setAttribute(SysConstants.SessionName.SESSION_NAME_FULLNAME, user.getName());
+            request.getSession().setAttribute(SysConstants.SessionName.SESSION_NAME_AUTHORITY, authority.toString());
+            request.getSession().setAttribute(SysConstants.SessionName.SESSION_NAME_ROLEIDS, roles);
             logger.info("登录成功");
             responseSuccess(response, "登录成功", null);
         } catch (Exception e) {

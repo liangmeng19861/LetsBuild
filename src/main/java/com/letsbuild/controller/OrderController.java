@@ -1,5 +1,8 @@
 package com.letsbuild.controller;
 
+import java.sql.Timestamp;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -10,8 +13,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.letsbuild.base.exception.SystemException;
+import com.letsbuild.base.util.DateUtil;
 import com.letsbuild.base.util.StringUtil;
 import com.letsbuild.business.interfaces.IOrderBusiSV;
+import com.letsbuild.constants.SysConstants;
 import com.letsbuild.vo.OrderVo;
 
 @Controller
@@ -22,30 +27,42 @@ public class OrderController extends BaseController {
 
     @Autowired
     private IOrderBusiSV orderBusiSV;
-    
+
     @RequestMapping
-    public String order(HttpServletRequest request, HttpServletResponse response){
+    public String order(HttpServletRequest request, HttpServletResponse response) {
         return "order/query";
     }
-    
-    @RequestMapping(value="query")
-    public String query(HttpServletRequest request, HttpServletResponse response){
+
+    @RequestMapping(value = "query")
+    public String query(HttpServletRequest request, HttpServletResponse response) {
         String brandCode = request.getParameter("brandCode");
         String projectCode = request.getParameter("projectCode");
-        String provinceCode = request.getParameter("province_code");
+        String provinceCode = request.getParameter("provinceCode");
         String cityCode = request.getParameter("cityCode");
-        String receiveTimeStart = request.getParameter("receiveTimeStart"); 
+        String merchantName = request.getParameter("merchantName");
+        String receiveTimeStart = request.getParameter("receiveTimeStart");
         String receiveTimeEnd = request.getParameter("receiveTimeEnd");
+        // 只能查询本人订单
+        Long projectLeader = (Long) request.getSession().getAttribute(
+                SysConstants.SessionName.SESSION_NAME_USERID);
+        // 接单开始结束时间
+        Timestamp start = DateUtil.getTimestamp(receiveTimeStart, DateUtil.DATETIME_FORMAT);
+        Timestamp end = DateUtil.getTimestamp(receiveTimeEnd, DateUtil.DATETIME_FORMAT);
+        List<OrderVo> voList = orderBusiSV.queryOrder(projectLeader, brandCode, projectCode,
+                provinceCode, cityCode, merchantName, start, end,
+                SysConstants.OrderQueryTimeType.RECEIVE_TIME);
+        request.setAttribute("orderList", voList);
         return "order/list";
     }
-    
-    @RequestMapping(value="/edit")
-    public String edit(HttpServletRequest request, HttpServletResponse response, OrderVo order){
+
+    @RequestMapping(value = "/edit")
+    public String edit(HttpServletRequest request, HttpServletResponse response, OrderVo order) {
         return "order/edit";
     }
 
     /**
      * 接单立项提交
+     * 
      * @param request
      * @param response
      * @param order
@@ -92,9 +109,10 @@ public class OrderController extends BaseController {
         }
 
     }
-    
+
     /**
      * 订单报价提交
+     * 
      * @param request
      * @param response
      * @param order
@@ -110,7 +128,7 @@ public class OrderController extends BaseController {
             if (order.getQuotesAmount() == null) {
                 throw new SystemException("报价金额不能为空");
             }
-            
+
             // FIXME 用户角色校验
             order.setProjectLeader(10l);// FIXME 用户ID
 
