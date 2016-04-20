@@ -18,7 +18,7 @@ required:必选项
 
 		// 默认值
 		settings=$.extend({
-			url:"scripts/sitejs/city.js",
+			url:window.document.location.href.substring(0,window.document.location.href.indexOf(window.document.location.pathname))+window.document.location.pathname.substring(0, window.document.location.pathname.substr(1).indexOf('/') + 1)+"/scripts/sitejs/city.js",
 			prov:null,
 			city:null,
 			dist:null,
