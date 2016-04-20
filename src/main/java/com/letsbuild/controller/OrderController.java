@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -102,7 +103,7 @@ public class OrderController extends BaseController {
      * @param order
      */
     @RequestMapping(value = "/receive",method=RequestMethod.POST)
-    public void receive(HttpServletRequest request, HttpServletResponse response, OrderVo order) {
+    public void receive(HttpServletRequest request, HttpServletResponse response,@ModelAttribute OrderVo order) {
 
         try {
             // 表单提交项
@@ -134,7 +135,7 @@ public class OrderController extends BaseController {
                 throw new SystemException("业务类型不能为空");
             }
             // FIXME 用户角色校验
-            order.setProjectLeader(10l);// FIXME 用户ID
+            order.setProjectLeader((Long) request.getSession().getAttribute(SysConstants.SessionName.SESSION_NAME_USERID));
 
             orderBusiSV.receiveOrder(order);
         } catch (Exception e) {

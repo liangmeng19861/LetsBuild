@@ -28,6 +28,13 @@
 <script type="text/javascript" src="${_base}/scripts/jquery.alerts.js"></script>
 <script type="text/javascript"
 	src="${_base}/scripts/jquery.pageController.js"></script>
+<!-- 日期控件 空间文档见：http://www.bootcss.com/p/bootstrap-datetimepicker/index.htm-->
+<link rel="stylesheet" href="${_base}/styles/bootstrap-datetimepicker.min.css" type="text/css" />
+<script type="text/javascript" src="${_base}/scripts/bootstrap-datetimepicker.min.js"></script>
+<script type="text/javascript" src="${_base}/scripts/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+<!-- 省市文件过大，只有在使用时引用 -->
+<script type="text/javascript" src="${_base}/scripts/sitejs/jquery.cityselect.js"></script>
+
 <script type="text/javascript">
 	/*声明一个页面管理对象*/
 	var controller = null;

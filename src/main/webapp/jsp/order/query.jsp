@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/jsp/common/header.jsp"%>
-<!-- 省市文件过大，只有在使用时引用 -->
-<script type="text/javascript" src="${_base}/scripts/sitejs/jquery.cityselect.js"></script>
 <script type="text/javascript">
 
 (function($) {
@@ -24,6 +22,8 @@
 				});
 				//绑定事件
 				_this.bindEvents();
+				//页面加载完查询
+				_this.query();
 			},
 			bindEvents : function() {
 				var _this = this;
@@ -90,7 +90,7 @@
              </li>
              <div class="wih50">
               <li class="field">项目编码：</li>
-              <li><input id="projectCode" type="text" class="query_input form-control"></li>
+              <li><input id="projectCode" type="text" value="${projectCode }" class="query_input form-control"></li>
              </div>
             </ul>
 			<ul>

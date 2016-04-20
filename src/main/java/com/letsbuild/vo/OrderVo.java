@@ -11,22 +11,6 @@ import com.letsbuild.dao.mapper.bo.OrdOrder;
  */
 public class OrderVo extends OrdOrder {
 
-	public String getProvinceName() {
-		return provinceName;
-	}
-
-	public void setProvinceName(String provinceName) {
-		this.provinceName = provinceName;
-	}
-
-	public String getCityName() {
-		return cityName;
-	}
-
-	public void setCityName(String cityName) {
-		this.cityName = cityName;
-	}
-
 	public String getBrandName() {
 		return brandName;
 	}
@@ -42,16 +26,6 @@ public class OrderVo extends OrdOrder {
 	public void setTypeName(String typeName) {
 		this.typeName = typeName;
 	}
-
-	/**
-	 * 省份名称
-	 */
-	private String provinceName;
-
-	/**
-	 * 城市名称
-	 */
-	private String cityName;
 
 	/**
 	 * 品牌名称
