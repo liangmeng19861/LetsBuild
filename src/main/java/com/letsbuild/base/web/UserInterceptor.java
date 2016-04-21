@@ -80,7 +80,7 @@ public class UserInterceptor extends HandlerInterceptorAdapter {
                 }
                 for (MenuVo child : vo.getChildMenu()) {
                     child.setCurrent("NO");
-                    if (request.getServletPath().startsWith(child.getUrl())) {
+                    if (request.getServletPath().equals((child.getUrl()))) {
                         current = true;
                         child.setCurrent("YES");
                     }
