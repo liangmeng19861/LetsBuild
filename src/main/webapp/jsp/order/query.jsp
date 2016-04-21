@@ -17,7 +17,7 @@
 				var _this = this;
 				//初始化省市下拉列表
 				$("#provcity").citySelect({
-					nodata:"none",
+					nodata:"hidden",
 					required:false
 				});
 				//绑定事件
